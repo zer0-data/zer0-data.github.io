@@ -1,0 +1,13 @@
+title: Aryan Sood | Portfolio & Resume
+author: Aryan Sood
+email: aryan_s2@ee.iitr.ac.in
+description: >- # this means to ignore newlines until "baseurl:"
+  Academic and professional resume for Aryan Sood, Electrical Engineering student at IIT Roorkee.
+url: "https://zer0-data.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+markdown: kramdown
+
+# Exclude files/folders from the build
+exclude:
+  - main.tex
+  - README.md

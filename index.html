@@ -1,0 +1,209 @@
+---
+layout: default
+---
+<section id="education">
+    <h2>Education</h2>
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="institution">Indian Institute of Technology Roorkee</h3>
+                <span class="degree">Bachelor of Technology in Electrical Engineering</span>
+            </div>
+            <div class="meta-group">
+                <span class="date">Aug. 2024 &ndash; 2028</span>
+                <span class="grade">CGPA: 8.367/10 (3.567/4)*</span>
+            </div>
+        </div>
+        <ul class="details">
+            <li><span class="note">* US scale conversion calculated via Scholaro methodology.</span></li>
+        </ul>
+    </div>
+</section>
+
+<section id="publications">
+    <h2>Publications</h2>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression
+                </h3>
+                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Tanvi Sharma, Vansh Agrawal</span>
+            </div>
+            <div class="meta-group">
+                <span class="status">Under Review</span>
+                <div class="links">
+                    <a href="https://arxiv.org/abs/2602.02199" target="_blank">Preprint</a> &nbsp;|&nbsp;
+                    <a href="https://github.com/zer0-data/LASER-KV" target="_blank"><i class="fab fa-github"></i>
+                        Github</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Introduced a KV cache compression method, LASER-KV, that achieves up to <strong>10% higher accuracy at
+                    128k context</strong> against greedy pruning methods with a block-wise accumulation strategy and
+                <strong>Exact-LSH sampling</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Don't Look Up (Every Token): Escaping Quadratic Complexity via Patterns and
+                    Algos</h3>
+                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Tanvi Sharma, Vansh Agrawal</span>
+            </div>
+            <div class="meta-group">
+                <span class="status">ICLR 2026</span>
+                <div class="links">
+                    <a href="https://iclr-blogposts.github.io/2026/blog/2026/sparsity/" target="_blank">Blog</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Researched various efficiency methods based on sparsity and categorized these efficiency techniques into
+                a cohesive taxonomy based on the reliance on <strong>static structural motifs versus dynamic, attention
+                    behaviors</strong>.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Sparse Attention Pre-Selection</h3>
+            </div>
+            <div class="meta-group">
+                <span class="date">September 2025</span>
+                <div class="links">
+                    <a href="https://github.com/sgdescent/FOCUS" target="_blank"><i class="fab fa-github"></i>
+                        GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>We developed a framework to significantly reduce the computational load of autoregressive inference in
+                LLMs via <strong>training a NN</strong> which selects the <strong>relevant tokens</strong> in the
+                context for a given query. Furthermore we use a layer wise sparse attention mask inspired by TidalDecode
+                to reduce the complexity of the attention computation.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">An Adaptive Momentum based PD Controller for Diffusion LLMs</h3>
+            </div>
+            <div class="meta-group">
+                <span class="date">December 2025</span>
+                <div class="links">
+                    <a href="https://github.com/zer0-data/ASMS" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Implemented a <strong>training-free monotonic masking framework for Diffusion LLMs which utilizes
+                    momentum</strong> to project the discrete space into continuous.</li>
+            <li>The momentum heuristic forces the <strong>embeddings off-manifold</strong> i.e off the hyper spheres,
+                leading to a <strong>hallucination lock-in</strong> in hard math tasks like MATH-500 but earlier
+                convergence with tasks like GSM8K.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Context-Aware and On-Manifold Remasking in Diffusion LLMs</h3>
+            </div>
+            <div class="meta-group">
+                <span class="date">Ongoing</span>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Currently we are experimenting how the masking changes with respect to the steps and context, ideally
+                leading to a <strong>structure aware remasking mechanism.</strong></li>
+            <li>Current <strong>warm-start methodologies</strong> in Diffusion LLMs have suffer from a lack of
+                adaptability to the above mentioned changes with steps.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Story Generation with Images</h3>
+            </div>
+            <div class="meta-group">
+                <span class="date">December 2024</span>
+                <div class="links">
+                    <a href="https://github.com/zer0-data/Story-generation-with-Images" target="_blank"><i
+                            class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Created a pipeline that consists of <strong>Stable Diffusion</strong> for image generation, an
+                <strong>OPT-1.3B</strong> fine tuned with <strong>LORA</strong> for the story generation and uses
+                feedback i.e. penalty, negative prompting for generation coherence.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Image Classification Pipeline for An Adversarially Attacked Dataset</h3>
+            </div>
+            <div class="meta-group">
+                <span class="date">January 2025</span>
+                <div class="links">
+                    <a href="https://github.com/zer0-data/Image-Classification-Pipeline-for-An-Adversarially-Attacked-Datase"
+                        target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Implemented a robust image classification system using an <strong>ensemble</strong> of
+                <strong>CLIP</strong> models. The system uses multiple prompt templates and <strong>test-time
+                    augmentations</strong> to improve classification accuracy and reliability.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="achievements">
+    <h2>Achievements</h2>
+    <ul class="achievement-list">
+        <li><strong>All India Rank 1519, JEE Advanced 2024</strong> &ndash; <em>150k+ students in India take this for
+                admission in IITs.</em></li>
+        <li><strong>All India Rank 2912, JEE Main 2024</strong> &ndash; <em>1M+ students in India take this for JEE
+                Advanced eligibility.</em></li>
+        <li><strong>Top 20 over 1000+ projects</strong> &ndash; <em>developed by IIT Roorkee students over the course of
+                a semester.</em></li>
+        <li><strong>Second in PixelPlay 2025</strong> &ndash; <em>A week long CV Hackathon among the top AI talent at
+                IIT Roorkee.</em></li>
+    </ul>
+</section>
+
+<section id="extracurricular">
+    <h2>Extracurricular</h2>
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="institution">Vision and Language Group, IIT Roorkee</h3>
+                <span class="role">Core Member</span>
+            </div>
+            <div class="meta-group">
+                <span class="date">February 2025 &ndash; Present</span>
+                <div class="links">
+                    <a href="https://vlg.iitr.ac.in/" target="_blank">VLG Website</a> &nbsp;|&nbsp;
+                    <a href="https://github.com/vlgiitr" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Deep learning group that fosters research and holds open discussions and projects related to deep
+                learning.</li>
+        </ul>
+    </div>
+</section>
