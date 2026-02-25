@@ -148,16 +148,20 @@ a:hover {
     padding: 3.5rem 0 2.5rem 0;
     /* Increased padding */
     border-bottom: 1px solid var(--border-color);
-    background-color: #3b4252;
-    /* Pastel dark grey (Nord theme inspired) */
-    color: #eceff4;
-    /* Light text for contrast */
+    background-color: var(--bg-color);
+    /* Restored to default background */
 }
 
 .hero-card {
     display: flex;
     align-items: flex-start;
     gap: 2.5rem;
+    background-color: #3b4252;
+    /* Move Pastel dark grey background to the card */
+    color: #eceff4;
+    /* Light text for contrast */
+    padding: 2.5rem;
+    border-radius: 4px;
 }
 
 .hero-photo {
