@@ -14,53 +14,73 @@
 </head>
 
 <body>
-    <div class="layout-wrapper">
-        <aside class="sidebar">
-            <div class="profile-container">
-                <div class="photo-wrapper">
-                    <!-- Replace 'profile.jpg' in the assets/images folder with your own photo! -->
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <a href="#">{{ site.author }}</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#education">Education</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#extracurricular">Extracurricular</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>{{ site.author }}</h1>
+                    <p class="tagline">Bachelor of Technology &bull; Electrical Engineering @ IIT Roorkee</p>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> Gurugram, Haryana, India</p>
+
+                    <div class="social-links">
+                        <a href="mailto:{{ site.email }}" aria-label="Email" title="Email"><i
+                                class="fas fa-envelope"></i></a>
+                        <a href="tel:+917838668881" aria-label="Phone" title="Phone"><i class="fas fa-phone"></i></a>
+                        <a href="https://linkedin.com/in/aryan-sood-05052k06" target="_blank" rel="noopener noreferrer"
+                            aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/zer0-data" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://scholar.google.com/citations?user=P66NEf0AAAAJ&hl=en&oi=sra" target="_blank"
+                            rel="noopener noreferrer" aria-label="Google Scholar" title="Google Scholar"><i
+                                class="fas fa-graduation-cap"></i></a>
+                    </div>
+                </div>
+                <div class="hero-photo">
                     <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="{{ site.author }}"
-                        class="profile-photo" id="profile-pic"
+                        class="profile-pic"
                         onerror="this.onerror=null; this.src='{{ '/assets/images/placeholder.svg' | relative_url }}';">
                 </div>
-                <h1>{{ site.author }}</h1>
-                <p class="location">Gurugram, Haryana, India - 122018</p>
-
-                <div class="contact-info">
-                    <a href="mailto:{{ site.email }}" aria-label="Email"><i class="fas fa-envelope"></i> {{ site.email
-                        }}</a>
-                    <a href="tel:+917838668881" aria-label="Phone"><i class="fas fa-phone"></i> +91-7838668881</a>
-                    <a href="https://linkedin.com/in/aryan-sood-05052k06" target="_blank" rel="noopener noreferrer"
-                        aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/zer0-data" target="_blank" rel="noopener noreferrer"
-                        aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://scholar.google.com/citations?user=P66NEf0AAAAJ&hl=en&oi=sra" target="_blank"
-                        rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i>
-                        Google Scholar</a>
-                </div>
             </div>
+        </div>
+    </header>
 
-            <nav class="toc">
-                <ul>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#achievements">Achievements</a></li>
-                    <li><a href="#extracurricular">Extracurricular</a></li>
-                </ul>
-            </nav>
-        </aside>
+    <main class="content-container">
+        {{ content }}
+    </main>
 
-        <main class="content">
-            {{ content }}
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> {{ site.author }}. All rights reserved.</p>
+        </div>
+    </footer>
 
-            <footer>
-                <p>&copy; <span id="year"></span> {{ site.author }}. All rights reserved.</p>
-            </footer>
-        </main>
-    </div>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Sticky nav JS
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.top-nav');
+            if (window.scrollY > 10) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 
