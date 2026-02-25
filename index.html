@@ -35,14 +35,15 @@ layout: default
                 <div class="links">
                     <a href="https://arxiv.org/abs/2602.02199" target="_blank">Preprint</a> &nbsp;|&nbsp;
                     <a href="https://github.com/zer0-data/LASER-KV" target="_blank"><i class="fab fa-github"></i>
-                        Github</a>
+                        GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
             <li>Introduced a KV cache compression method, LASER-KV, that achieves up to <strong>10% higher accuracy at
                     128k context</strong> against greedy pruning methods with a block-wise accumulation strategy and
-                <strong>Exact-LSH sampling</strong>.</li>
+                <strong>Exact-LSH sampling</strong>.
+            </li>
         </ul>
     </div>
 
@@ -74,21 +75,17 @@ layout: default
     <div class="item">
         <div class="item-header">
             <div class="title-group">
-                <h3 class="project-title">Sparse Attention Pre-Selection</h3>
+                <h3 class="project-title">Context-Aware and On-Manifold Remasking in Diffusion LLMs</h3>
             </div>
             <div class="meta-group">
-                <span class="date">September 2025</span>
-                <div class="links">
-                    <a href="https://github.com/sgdescent/FOCUS" target="_blank"><i class="fab fa-github"></i>
-                        GitHub</a>
-                </div>
+                <span class="date">Ongoing</span>
             </div>
         </div>
         <ul class="details">
-            <li>We developed a framework to significantly reduce the computational load of autoregressive inference in
-                LLMs via <strong>training a NN</strong> which selects the <strong>relevant tokens</strong> in the
-                context for a given query. Furthermore we use a layer wise sparse attention mask inspired by TidalDecode
-                to reduce the complexity of the attention computation.</li>
+            <li>Currently we are experimenting how the masking changes with respect to the steps and context, ideally
+                leading to a <strong>structure aware remasking mechanism.</strong></li>
+            <li>Current <strong>warm-start methodologies</strong> in Diffusion LLMs have suffer from a lack of
+                adaptability to the above mentioned changes with steps.</li>
         </ul>
     </div>
 
@@ -116,37 +113,21 @@ layout: default
     <div class="item">
         <div class="item-header">
             <div class="title-group">
-                <h3 class="project-title">Context-Aware and On-Manifold Remasking in Diffusion LLMs</h3>
+                <h3 class="project-title">Sparse Attention Pre-Selection</h3>
             </div>
             <div class="meta-group">
-                <span class="date">Ongoing</span>
-            </div>
-        </div>
-        <ul class="details">
-            <li>Currently we are experimenting how the masking changes with respect to the steps and context, ideally
-                leading to a <strong>structure aware remasking mechanism.</strong></li>
-            <li>Current <strong>warm-start methodologies</strong> in Diffusion LLMs have suffer from a lack of
-                adaptability to the above mentioned changes with steps.</li>
-        </ul>
-    </div>
-
-    <div class="item">
-        <div class="item-header">
-            <div class="title-group">
-                <h3 class="project-title">Story Generation with Images</h3>
-            </div>
-            <div class="meta-group">
-                <span class="date">December 2024</span>
+                <span class="date">September 2025</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/Story-generation-with-Images" target="_blank"><i
-                            class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/sgdescent/FOCUS" target="_blank"><i class="fab fa-github"></i>
+                        GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
-            <li>Created a pipeline that consists of <strong>Stable Diffusion</strong> for image generation, an
-                <strong>OPT-1.3B</strong> fine tuned with <strong>LORA</strong> for the story generation and uses
-                feedback i.e. penalty, negative prompting for generation coherence.</li>
+            <li>We developed a framework to significantly reduce the computational load of autoregressive inference in
+                LLMs via <strong>training a NN</strong> which selects the <strong>relevant tokens</strong> in the
+                context for a given query. Furthermore we use a layer wise sparse attention mask inspired by TidalDecode
+                to reduce the complexity of the attention computation.</li>
         </ul>
     </div>
 
@@ -166,23 +147,50 @@ layout: default
         <ul class="details">
             <li>Implemented a robust image classification system using an <strong>ensemble</strong> of
                 <strong>CLIP</strong> models. The system uses multiple prompt templates and <strong>test-time
-                    augmentations</strong> to improve classification accuracy and reliability.</li>
+                    augmentations</strong> to improve classification accuracy and reliability.
+            </li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Story Generation with Images</h3>
+            </div>
+            <div class="meta-group">
+                <span class="date">December 2024</span>
+                <div class="links">
+                    <a href="https://github.com/zer0-data/Story-generation-with-Images" target="_blank"><i
+                            class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Created a pipeline that consists of <strong>Stable Diffusion</strong> for image generation, an
+                <strong>OPT-1.3B</strong> fine tuned with <strong>LORA</strong> for the story generation and uses
+                feedback i.e. penalty, negative prompting for generation coherence.
+            </li>
         </ul>
     </div>
 </section>
 
 <section id="achievements">
     <h2>Achievements</h2>
-    <ul class="achievement-list">
-        <li><strong>All India Rank 1519, JEE Advanced 2024</strong> &ndash; <em>150k+ students in India take this for
-                admission in IITs.</em></li>
-        <li><strong>All India Rank 2912, JEE Main 2024</strong> &ndash; <em>1M+ students in India take this for JEE
-                Advanced eligibility.</em></li>
-        <li><strong>Top 20 over 1000+ projects</strong> &ndash; <em>developed by IIT Roorkee students over the course of
-                a semester.</em></li>
-        <li><strong>Second in PixelPlay 2025</strong> &ndash; <em>A week long CV Hackathon among the top AI talent at
-                IIT Roorkee.</em></li>
-    </ul>
+    <div class="item">
+        <ul class="achievement-list">
+            <li><strong>All India Rank 1519, JEE Advanced 2024</strong> &ndash; <em>150k+ students in India take this
+                    for
+                    admission in IITs.</em></li>
+            <li><strong>All India Rank 2912, JEE Main 2024</strong> &ndash; <em>1M+ students in India take this for JEE
+                    Advanced eligibility.</em></li>
+            <li><strong>Top 20 over 1000+ projects</strong> &ndash; <em>developed by IIT Roorkee students over the
+                    course of
+                    a semester.</em></li>
+            <li><strong>Second in PixelPlay 2025</strong> &ndash; <em>A week long CV Hackathon among the top AI talent
+                    at
+                    IIT Roorkee.</em></li>
+        </ul>
+    </div>
 </section>
 
 <section id="extracurricular">
