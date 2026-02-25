@@ -9,5 +9,4 @@ markdown: kramdown
 
 # Exclude files/folders from the build
 exclude:
-  - main.tex
   - README.md
