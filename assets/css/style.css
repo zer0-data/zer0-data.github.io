@@ -161,20 +161,14 @@ a:hover {
 }
 
 .profile-pic {
-<<<<<<< HEAD
     width: 140px;
+    /* Updated from 120px */
     height: 140px;
-    object-fit: cover;
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-color);
-=======
-    width: 120px;
-    height: 120px;
+    /* Updated from 120px */
     object-fit: cover;
     border: 1px solid var(--border-color);
     background-color: var(--bg-color);
     /* Strict encyclopedic look prevents overly rounded elements, but a simple border radius or square is preferred. Let's use a subtle square or full circle. A sharp square with a slight border is very formal. */
->>>>>>> parent of 7734262 (v6)
     border-radius: 2px;
 }
 
@@ -183,28 +177,19 @@ a:hover {
 }
 
 .hero-text h1 {
-<<<<<<< HEAD
-    font-size: 3.2rem;
-=======
     font-size: 2.25rem;
->>>>>>> parent of 7734262 (v6)
+    /* Reverted from 3.2rem */
     margin-bottom: 0.2rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.3rem;
     margin-bottom: 0.5rem;
-<<<<<<< HEAD
     color: var(--text-primary);
-=======
->>>>>>> parent of 7734262 (v6)
+    /* Added from conflict */
 }
 
 .tagline {
     font-family: var(--body-font);
-<<<<<<< HEAD
-    font-size: 1.1rem;
-=======
     font-size: 1rem;
->>>>>>> parent of 7734262 (v6)
     color: var(--text-secondary);
     margin-bottom: 0.3rem;
 }
@@ -230,13 +215,6 @@ a:hover {
     font-family: var(--body-font);
     font-size: 0.9rem;
     color: var(--accent-color);
-<<<<<<< HEAD
-}
-
-.social-links a:hover {
-    text-decoration: underline;
-=======
->>>>>>> parent of 7734262 (v6)
 }
 
 /* Main Content Area */
