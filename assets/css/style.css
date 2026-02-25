@@ -70,7 +70,7 @@ a:hover {
     padding: 0 2rem;
 }
 
-/* Top Navigation */
+/* Top Navigation & Dropdown */
 .top-nav {
     position: fixed;
     top: 0;
@@ -100,41 +100,136 @@ a:hover {
     font-size: 1.25rem;
     color: var(--text-primary);
     text-decoration: none;
+    letter-spacing: -0.02em;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
+/* Dropdown Menu CSS */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.nav-links a {
+.dropbtn {
+    background-color: transparent;
+    color: var(--text-secondary);
     font-family: var(--heading-font);
     font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.nav-links a:hover {
+.dropbtn:hover,
+.dropbtn[aria-expanded="true"] {
+    background-color: var(--accent-light);
     color: var(--accent-color);
 }
 
-/* Hero Section */
-.hero {
-    margin-top: 80px;
-    /* Offset for fixed nav */
-    padding: 5rem 0 3rem 0;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
     background-color: var(--surface-color);
+    min-width: 220px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    z-index: 1;
+    overflow: hidden;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Show class for JS */
+.dropdown-content.show,
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-content a {
+    color: var(--text-secondary);
+    padding: 0.8rem 1.2rem;
+    text-decoration: none;
+    display: block;
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: 0.95rem;
     border-bottom: 1px solid var(--border-color);
 }
 
-.hero-content {
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--accent-light);
+    color: var(--accent-color);
+    padding-left: 1.5rem;
+    /* Slight indent on hover */
+}
+
+
+/* Hero Section (Re-styled as a pretty card block) */
+.hero {
+    margin-top: 80px;
+    /* Offset for fixed nav */
+    padding: 3rem 0;
+}
+
+.hero-card {
+    background-color: var(--surface-color);
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-color);
+    padding: 3rem 4rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
+    gap: 3.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle accent block inside the hero card */
+.hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--accent-color);
+}
+
+/* Profile Photo - Prettier sizing & framing */
+.hero-photo {
+    flex-shrink: 0;
+}
+
+.profile-pic {
+    width: 130px;
+    /* Smaller, neater size */
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--accent-light);
+    background-color: var(--bg-color);
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+    border-color: #BFDBFE;
 }
 
 .hero-text {
@@ -142,16 +237,18 @@ a:hover {
 }
 
 .hero-text h1 {
-    font-size: 3rem;
-    letter-spacing: -0.05em;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
 }
 
 .tagline {
     font-family: var(--heading-font);
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--accent-color);
+    /* Highlight the tagline */
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
@@ -160,55 +257,46 @@ a:hover {
     font-size: 0.95rem;
     color: var(--text-tertiary);
     margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
-.hero-text .location i {
-    margin-right: 0.3rem;
-}
-
+/* Social Icon Blocks */
 .social-links {
     display: flex;
-    gap: 1.2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .social-links a {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     background-color: var(--bg-color);
-    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    /* Squircle looks more modern */
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     transition: all 0.2s ease;
 }
 
 .social-links a:hover {
     background-color: var(--accent-color);
+    border-color: var(--accent-color);
     color: white;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
     text-decoration: none;
 }
 
-/* Profile Photo - Smaller & Inline */
-.hero-photo {
-    flex-shrink: 0;
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    border: 4px solid white;
-    background-color: var(--bg-color);
-}
 
 /* Main Content Area */
 .content-container {
-    padding-top: var(--section-spacing);
+    padding-top: 2rem;
     padding-bottom: var(--section-spacing);
 }
 
@@ -216,8 +304,8 @@ a:hover {
 section {
     margin-bottom: var(--section-spacing);
     background-color: var(--surface-color);
-    padding: 3rem;
-    /* Highly increased padding for readability */
+    padding: 3.5rem 4rem;
+    /* High padding for extreme readability */
     border-radius: 16px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     border: 1px solid var(--border-color);
@@ -234,7 +322,7 @@ section h2 {
     position: relative;
 }
 
-/* Add a cool accent bar to the sections */
+/* Accent bar to the sections */
 section h2::after {
     content: '';
     position: absolute;
@@ -341,7 +429,8 @@ ul.details {
 }
 
 ul.details li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.8rem;
+    /* Increased spacing */
     position: relative;
     padding-left: 1.5rem;
 }
@@ -408,15 +497,30 @@ footer {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        /* In a real app we'd add a hamburger menu here */
+    .dropdown {
+        position: static;
     }
 
-    .hero-content {
-        flex-direction: column-reverse;
+    .dropdown-content {
+        min-width: 100%;
+        top: 100%;
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+    }
+
+    .hero-card {
+        flex-direction: column;
         text-align: center;
-        gap: 2rem;
+        gap: 1.5rem;
+        padding: 2.5rem 1.5rem;
+    }
+
+    .hero-card::before {
+        width: 100%;
+        height: 6px;
+        left: 0;
+        top: 0;
     }
 
     .social-links {
@@ -424,7 +528,7 @@ footer {
     }
 
     section {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem;
     }
 
     .item-header {
