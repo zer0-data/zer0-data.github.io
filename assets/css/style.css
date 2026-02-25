@@ -152,8 +152,8 @@ a:hover {
 
 .hero-card {
     display: flex;
-    align-items: flex-start;
-    gap: 2rem;
+    align-items: center;
+    gap: 3rem;
 }
 
 .hero-photo {
@@ -161,15 +161,12 @@ a:hover {
 }
 
 .profile-pic {
-    width: 140px;
-    /* Updated from 120px */
-    height: 140px;
-    /* Updated from 120px */
+    width: 280px;
+    height: 280px;
     object-fit: cover;
     border: 1px solid var(--border-color);
     background-color: var(--bg-color);
-    /* Strict encyclopedic look prevents overly rounded elements, but a simple border radius or square is preferred. Let's use a subtle square or full circle. A sharp square with a slight border is very formal. */
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 .hero-text {
@@ -177,28 +174,26 @@ a:hover {
 }
 
 .hero-text h1 {
-    font-size: 2.25rem;
-    /* Reverted from 3.2rem */
+    font-size: 3.2rem;
     margin-bottom: 0.2rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.3rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
-    /* Added from conflict */
 }
 
 .tagline {
     font-family: var(--body-font);
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
     margin-bottom: 0.3rem;
 }
 
 .hero-text .location {
     font-family: var(--body-font);
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-tertiary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 /* Social Icon Blocks - Text links instead of floating blocks */
