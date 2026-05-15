@@ -1,5 +1,4 @@
 :root {
-    /* Color Palette - Encyclopedic & Academic */
     --bg-color: #FFFFFF;
     --surface-color: #FFFFFF;
     --text-primary: #111111;
@@ -7,16 +6,41 @@
     --text-tertiary: #555555;
     --accent-color: #0056b3;
     --border-color: #a2a9b1;
-    /* Classic Wikipedia border grey */
-
-    /* Typography */
+    --nav-bg: #f8f9fa;
+    --card-border: #e0e4e8;
+    --hover-bg: #e9ecef;
+    --badge-accepted-bg: #dbeafe;
+    --badge-accepted-color: #1e40af;
+    --badge-review-bg: #f3f4f6;
+    --badge-review-color: #4b5563;
+    --pub-accent: #0056b3;
+    --bibtex-bg: #f8f9fa;
+    --btn-primary-bg: #0056b3;
+    --btn-primary-color: #ffffff;
     --heading-font: 'Lora', serif;
-    /* Serif for encyclopedic authority */
     --body-font: 'Inter', sans-serif;
-    /* Clean sans for readability (or swap, but Wikipedia uses sans body, serif headers) */
-
-    /* Spacing */
     --section-spacing: 2.5rem;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0d1117;
+    --surface-color: #161b22;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-tertiary: #6e7681;
+    --accent-color: #58a6ff;
+    --border-color: #30363d;
+    --nav-bg: #161b22;
+    --card-border: #30363d;
+    --hover-bg: #21262d;
+    --badge-accepted-bg: #172554;
+    --badge-accepted-color: #93c5fd;
+    --badge-review-bg: #21262d;
+    --badge-review-color: #8b949e;
+    --pub-accent: #58a6ff;
+    --bibtex-bg: #0d1117;
+    --btn-primary-bg: #1f6feb;
+    --btn-primary-color: #ffffff;
 }
 
 * {
@@ -35,12 +59,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
     font-weight: 600;
     color: var(--text-primary);
@@ -56,94 +75,73 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Base Container Width */
 .nav-content,
 .hero-container,
 .content-container,
 .footer-content {
     max-width: 1000px;
-    /* Increased from 900px to prevent text wrapping */
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Top Navigation & Dropdown */
+/* ── Navigation ── */
 .top-nav {
     border-bottom: 1px solid var(--border-color);
-    background-color: #f8f9fa;
-    /* Slight off-white for nav header */
-    padding: 0.8rem 0;
+    background-color: var(--nav-bg);
+    padding: 0.55rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-content {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 }
 
-.nav-brand a {
-    font-family: var(--heading-font);
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: var(--text-primary);
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent;
-    color: var(--text-primary);
-    font-family: var(--body-font);
-    font-size: 0.95rem;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    padding: 0.4rem 0.8rem;
+.nav-links {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    border-radius: 2px;
+    gap: 0.05rem;
+    flex-wrap: wrap;
 }
 
-.dropbtn:hover {
-    background-color: #e9ecef;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: var(--surface-color);
-    min-width: 200px;
-    border: 1px solid var(--border-color);
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-content.show {
-    display: block;
-}
-
-.dropdown-content a {
-    color: var(--text-primary);
-    padding: 0.6rem 1rem;
-    display: block;
+.nav-links a {
+    color: var(--text-secondary);
     font-family: var(--body-font);
-    font-size: 0.9rem;
-    border-bottom: 1px solid #eaecf0;
+    font-size: 0.875rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
 }
 
-.dropdown-content a:last-child {
-    border-bottom: none;
+.nav-links a:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+    text-decoration: none;
 }
 
-.dropdown-content a:hover {
-    background-color: #f1f3f4;
+.dark-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.35rem 0.6rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    margin-left: 0.75rem;
+    flex-shrink: 0;
+    transition: background-color 0.15s, color 0.15s;
 }
 
-/* Hero Section */
+.dark-toggle:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+/* ── Hero ── */
 .hero {
     padding: 2.5rem 0 1.5rem 0;
     border-bottom: 1px solid var(--border-color);
@@ -175,7 +173,6 @@ a:hover {
 
 .hero-text h1 {
     font-size: 3.2rem;
-    margin-bottom: 0.2rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.3rem;
     margin-bottom: 0.5rem;
@@ -193,10 +190,45 @@ a:hover {
     font-family: var(--body-font);
     font-size: 1rem;
     color: var(--text-tertiary);
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Social Icon Blocks - Text links instead of floating blocks */
+.research-interests {
+    font-family: var(--body-font);
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.55;
+    font-style: italic;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.9rem;
+}
+
+.btn-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.85rem;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-color) !important;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 3px;
+    text-decoration: none !important;
+    transition: opacity 0.15s;
+}
+
+.btn-cv:hover {
+    opacity: 0.82;
+    text-decoration: none !important;
+}
+
 .social-links {
     display: flex;
     flex-wrap: wrap;
@@ -212,13 +244,12 @@ a:hover {
     color: var(--accent-color);
 }
 
-/* Main Content Area */
+/* ── Content ── */
 .content-container {
     padding-top: 1.5rem;
     padding-bottom: var(--section-spacing);
 }
 
-/* Sections */
 section {
     margin-bottom: var(--section-spacing);
 }
@@ -231,12 +262,12 @@ section h2 {
     color: var(--text-primary);
 }
 
-/* Items formatting (Education, Projects, etc) */
+/* ── Cards ── */
 .item {
     margin-bottom: 1.5rem;
-    padding: 1.5rem;
+    padding: 1.5rem 1.75rem;
     background-color: var(--surface-color);
-    border: 1px solid #e0e4e8;
+    border: 1px solid var(--card-border);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -244,75 +275,151 @@ section h2 {
 
 .item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .item:last-child {
     margin-bottom: 0;
 }
 
+.publication-item {
+    border-left: 3px solid var(--pub-accent);
+}
+
 .item-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 0.6rem;
+    gap: 1.5rem;
 }
 
 .title-group {
-    flex: 1 1 auto;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .meta-group {
-    flex: 0 0 auto;
+    flex: 0 0 185px;
+    min-width: 185px;
     text-align: right;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    gap: 0.35rem;
 }
 
 h3 {
     font-family: var(--body-font);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
-.degree,
-.authors,
-.role {
+.degree, .authors, .role {
     display: block;
     font-size: 0.95rem;
     color: var(--text-secondary);
     margin-top: 0.2rem;
 }
 
-.date,
-.status,
-.grade {
+.date, .grade {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--text-secondary);
     font-style: italic;
-    /* Academic standard for dates/status */
-}
-
-/* Formatting fix for "Under Review" alignment */
-.status {
-    margin-bottom: 0.2rem;
 }
 
 .links {
-    font-size: 0.9rem;
-    margin-top: 0.2rem;
+    font-size: 0.875rem;
 }
 
 .links a {
     color: var(--accent-color);
 }
 
-/* Lists */
+/* ── Badges ── */
+.badge {
+    display: inline-block;
+    padding: 0.18rem 0.65rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.badge-accepted {
+    background-color: var(--badge-accepted-bg);
+    color: var(--badge-accepted-color);
+}
+
+.badge-review {
+    background-color: var(--badge-review-bg);
+    color: var(--badge-review-color);
+}
+
+/* ── Preprint button ── */
+.btn-preprint {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-color) !important;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: opacity 0.15s;
+}
+
+.btn-preprint:hover {
+    opacity: 0.82;
+    text-decoration: none !important;
+}
+
+/* ── BibTeX toggle ── */
+.bibtex-toggle {
+    margin-top: 0.75rem;
+}
+
+.bibtex-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-tertiary);
+    font-size: 0.78rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: var(--body-font);
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.bibtex-btn:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-secondary);
+}
+
+.bibtex-block {
+    display: none;
+    margin-top: 0.5rem;
+    background-color: var(--bibtex-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    color: var(--text-secondary);
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.55;
+}
+
+.bibtex-toggle.open .bibtex-block {
+    display: block;
+}
+
+/* ── Lists ── */
 ul.details {
     list-style-type: disc;
     padding-left: 2rem;
@@ -324,7 +431,6 @@ ul.details li {
     margin-bottom: 0.4rem;
 }
 
-/* Achievement specific - No emojis */
 ul.achievement-list {
     list-style-type: none;
     padding-left: 0;
@@ -350,7 +456,7 @@ ul.achievement-list li strong {
     font-weight: 600;
 }
 
-/* Footer */
+/* ── Footer ── */
 footer {
     border-top: 1px solid var(--border-color);
     padding: 2rem 0;
@@ -363,18 +469,11 @@ footer {
     color: var(--text-tertiary);
 }
 
-/* Responsive adjustments */
+/* ── Responsive ── */
 @media (max-width: 768px) {
-    .dropdown {
-        position: static;
-    }
-
-    .dropdown-content {
-        min-width: 100%;
-        top: 100%;
-        border: none;
-        border-top: 1px solid var(--border-color);
-        box-shadow: none;
+    .nav-links a {
+        font-size: 0.78rem;
+        padding: 0.28rem 0.45rem;
     }
 
     .hero-card {
@@ -388,14 +487,20 @@ footer {
         justify-content: center;
     }
 
+    .hero-actions {
+        justify-content: center;
+    }
+
     .item-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.5rem;
     }
 
     .meta-group {
+        flex: none;
+        min-width: unset;
         text-align: left;
         align-items: flex-start;
-        margin-top: 0.2rem;
     }
 }
