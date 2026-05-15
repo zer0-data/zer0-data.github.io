@@ -20,6 +20,26 @@ layout: default
     </div>
 </section>
 
+<section id="experience">
+    <h2>Experience</h2>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="institution">Auric AI Labs</h3>
+                <span class="role">Computer Vision Intern</span>
+            </div>
+            <div class="meta-group">
+                <span class="date">March 2026 &ndash; May 2026</span>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Worked on generating 2D renders from 3D meshes of military objects using Blenderproc and further enhancing their quality using EO data.</li>
+            <li>Created a Semantic Suggestion Pipeline by re-utilizing the methodology proposed in <em>Seeing The Unseen</em> for EO data, and implementing deterministic placement rules for military objects in satellite data.</li>
+        </ul>
+    </div>
+</section>
+
 <section id="publications">
     <h2>Publications</h2>
 
@@ -31,7 +51,7 @@ layout: default
                 <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Tanvi Sharma, Vansh Agrawal</span>
             </div>
             <div class="meta-group">
-                <span class="status">Under Review</span>
+                <span class="status">ICLR 2026</span>
                 <div class="links">
                     <a href="https://arxiv.org/abs/2602.02199" target="_blank">Preprint</a> &nbsp;|&nbsp;
                     <a href="https://github.com/zer0-data/LASER-KV" target="_blank"><i class="fab fa-github"></i>
@@ -44,6 +64,25 @@ layout: default
                     128k context</strong> against greedy pruning methods with a block-wise accumulation strategy and
                 <strong>Exact-LSH sampling</strong>.
             </li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Dropping the Anchor: Statistical Summarization for Distributed Systems via Pulsar Attention</h3>
+                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Shantanu Acharya</span>
+            </div>
+            <div class="meta-group">
+                <span class="status">Under Review</span>
+                <div class="links">
+                    <a href="https://arxiv.org/abs/2602.02199" target="_blank">Preprint</a> &nbsp;|&nbsp;
+                    <a href="https://github.com/zer0-data/Statistical-Cross-Attention/tree/main" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Collaborated with a researcher at NVIDIA to further develop StarAttention (a framework for distributed systems). Pulsar Attention enables cross-block communication using lightweight summaries, achieving a <strong>4.97%</strong> improvement at long context over the full attention baseline.</li>
         </ul>
     </div>
 
@@ -86,6 +125,24 @@ layout: default
                 leading to a <strong>structure aware remasking mechanism.</strong></li>
             <li>Current <strong>warm-start methodologies</strong> in Diffusion LLMs have suffer from a lack of
                 adaptability to the above mentioned changes with steps.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">GNSS Anti-Spoofing Detection</h3>
+            </div>
+            <div class="meta-group">
+                <span class="date">March 2026</span>
+                <div class="links">
+                    <a href="https://github.com/APT-KK/GNSS_Spoofing" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Built a Transformer encoder with 8-channel early fusion over 14 features per satellite, detecting GPS spoofing by learning cross-satellite signal inconsistencies; achieved <strong>Val F1 of 0.9798</strong> across 5-fold CV.</li>
+            <li>Engineered paper-inspired features (CNO spatial/temporal std, EML discriminator) capturing the physical signature of single-source spoofing; trained with AdamW, BCELoss, and per-fold early stopping.</li>
         </ul>
     </div>
 
