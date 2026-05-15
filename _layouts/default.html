@@ -16,20 +16,17 @@
 <body>
     <nav class="top-nav">
         <div class="nav-content">
-            <!-- Replace standard list with a dropdown button structure -->
-            <div class="dropdown">
-                <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
-                    Sections <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#education">Education</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#publications">Publications</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#achievements">Achievements</a>
-                    <a href="#extracurricular">Extracurricular</a>
-                </div>
+            <div class="nav-links">
+                <a href="#education">Education</a>
+                <a href="#publications">Publications</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#extracurricular">Extracurricular</a>
             </div>
+            <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </nav>
 
@@ -45,6 +42,13 @@
                     <h1>{{ site.author }}</h1>
                     <p class="tagline">Bachelor of Technology &mdash; Electrical Engineering, IIT Roorkee</p>
                     <p class="location">Gurugram, Haryana, India</p>
+                    <p class="research-interests">Research interests: efficient inference for large language models &mdash; KV-cache compression, sparse and distributed attention, and long-context reasoning.</p>
+
+                    <div class="hero-actions">
+                        <a href="/assets/resume.pdf" class="btn-cv" target="_blank">
+                            <i class="fas fa-file-alt"></i> CV / Resume
+                        </a>
+                    </div>
 
                     <div class="social-links">
                         <a href="mailto:{{ site.email }}" title="Email"><i class="fas fa-envelope"></i> Email</a>
@@ -74,32 +78,33 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Sticky nav JS
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.top-nav');
-            if (window.scrollY > 10) {
-                nav.classList.add('scrolled');
+        // Dark mode
+        const toggle = document.getElementById('darkToggle');
+        const icon = toggle.querySelector('i');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            icon.className = 'fas fa-sun';
+        }
+
+        toggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
             } else {
-                nav.classList.remove('scrolled');
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         });
 
-        // Simple JS for accessible dropdown (helps click events on mobile)
-        const dropbtn = document.querySelector('.dropbtn');
-        const dropdownContent = document.querySelector('.dropdown-content');
-
-        dropbtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const expanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !expanded);
-            dropdownContent.classList.toggle('show');
-        });
-
-        window.addEventListener('click', function () {
-            if (dropdownContent.classList.contains('show')) {
-                dropbtn.setAttribute('aria-expanded', 'false');
-                dropdownContent.classList.remove('show');
-            }
+        // BibTeX toggles
+        document.querySelectorAll('.bibtex-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.bibtex-toggle').classList.toggle('open');
+            });
         });
     </script>
 </body>
