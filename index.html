@@ -229,6 +229,91 @@ layout: default
             </li>
         </ul>
     </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">GATE-IR: Gated Adaptive Thermal Enhancement for Infrared Detection</h3>
+            </div>
+            <div class="meta-group">
+                <div class="links">
+                    <a href="https://github.com/zer0-data/GATE-IR" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Built a three-stage pipeline for object detection in adverse weather using thermal imagery: a low-latency <strong>WeatherGate classifier</strong> (Clear/Fog/Rain) followed by weather-specific enhancement (adaptive gamma, LSRB+CLAHE), feeding a modified <strong>YOLOv8-Small</strong> with ViT neck and P2 head for small-object recovery.</li>
+            <li>Applied <strong>CycleGAN</strong> for IR-to-pseudo-RGB translation and <strong>knowledge distillation</strong> to transfer RGB-pretrained teacher weights to a single-channel thermal student.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Research Corpus Agent</h3>
+            </div>
+            <div class="meta-group">
+                <div class="links">
+                    <a href="https://github.com/zer0-data/Research-Corpus-Agent" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Built a multi-agent RAG system over <strong>100k+ ArXiv papers</strong> (CS/AI/ML) using a Planner &rarr; Retriever &rarr; Analyst &rarr; Critic pipeline for query decomposition, retrieval, synthesis, and verification.</li>
+            <li>Retrieval fuses <strong>BGE dense embeddings</strong> (ChromaDB), <strong>BM25 sparse matching</strong>, and <strong>ColBERT neural retrieval</strong> via Reciprocal Rank Fusion, reranked with ms-marco-MiniLM; figures/tables extracted with <strong>Qwen2.5-VL</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">AutoGenx</h3>
+            </div>
+            <div class="meta-group">
+                <div class="links">
+                    <a href="https://github.com/zer0-data/AutoGenx" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Flask app that generates and deploys websites from text prompts, canvas sketches, uploaded images, or <strong>Figma wireframes</strong>, using <strong>Gemini API</strong> for code generation with live preview and GitHub Pages deployment.</li>
+            <li>Supports multi-input modalities: sketch-to-PNG conversion, Figma file rendering, and ZIP download; integrates Pydantic validation with optional GitHub PAT for one-click live deployment.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">ViralStakePy</h3>
+            </div>
+            <div class="meta-group">
+                <div class="links">
+                    <a href="https://github.com/zer0-data/ViralStakePy" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Social prediction platform for tweet virality forecasting: users stake virtual points on AI-scored predictions, earning <strong>NFT rewards</strong> via Ethereum; backend uses <strong>FastAPI + MongoDB</strong>, analysis powered by <strong>Gemini API</strong>.</li>
+            <li>Computes confidence scores (0–1) and viral indicators from Twitter URL submissions; Streamlit frontend with Plotly visualizations and full blockchain minting integration.</li>
+        </ul>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Elyx Life Hackathon &mdash; Health Dashboard</h3>
+            </div>
+            <div class="meta-group">
+                <div class="links">
+                    <a href="https://github.com/zer0-data/ElyxLifeHackathon" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Healthcare provider dashboard aggregating member biomarkers, wearable metrics (sleep, HRV, heart rate), and diagnostic timelines via <strong>8 RESTful endpoints</strong>; visualized with Chart.js and Tailwind CSS.</li>
+            <li>Integrated <strong>GPT-powered AI chat assistant</strong> enabling natural-language queries over member health records, with Flask backend and static JSON/CSV data layer.</li>
+        </ul>
+    </div>
 </section>
 
 <section id="achievements">
