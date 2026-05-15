@@ -43,12 +43,15 @@ layout: default
         </ul>
         <div class="bibtex-toggle">
             <button class="bibtex-btn"><i class="fas fa-quote-right"></i> BibTeX</button>
-            <pre class="bibtex-block">@inproceedings{sood2026laserkv,
-  title     = {More Than a Quick Glance: Overcoming the Greedy Bias in {KV}-Cache Compression},
-  author    = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},
-  booktitle = {ICLR 2026},
-  year      = {2026},
-  url       = {https://arxiv.org/abs/2602.02199}
+            <pre class="bibtex-block">@misc{sood2026quickglanceovercominggreedy,
+      title={More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression}, 
+      author={Aryan Sood and Tanvi Sharma and Vansh Agrawal},
+      year={2026},
+      eprint={2602.02199},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2602.02199}, 
+}
 }</pre>
         </div>
     </div>
@@ -101,12 +104,15 @@ layout: default
         </ul>
         <div class="bibtex-toggle">
             <button class="bibtex-btn"><i class="fas fa-quote-right"></i> BibTeX</button>
-            <pre class="bibtex-block">@inproceedings{sood2026sparsity,
-  title     = {Don't Look Up (Every Token): Escaping Quadratic Complexity via Patterns and Algorithms},
-  author    = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},
-  booktitle = {ICLR 2026 Blog Posts Track},
-  year      = {2026},
-  url       = {https://iclr-blogposts.github.io/2026/blog/2026/sparsity/}
+            <pre class="bibtex-block">@inproceedings{sood2026dontlookup,
+  author = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},
+  title = {Don't Look Up (Every Token): Escaping Quadratic Complexity via Geometric Patterns and Algorithms},
+  abstract = {Large Language Models (LLMs) have brought about a significant change in the field of artificial intelligence, where they have transitioned in scope from being specialized research tools to common resources that drive the next generation of software. With increasing model parameters and training data, LLMs demonstrate new abilities in reasoning, code generation, and solving complex problems that were once considered unattainable. However, scaling these models effectively for long-context applications uniquely poses a challenge. This is primarily due to the inherent limitations of the self-attention mechanism, which has quadratic time complexity. This quadratic bottleneck hinders applications for long documents, high-resolution images, and large codebases, among others. However, what is interesting to observe is that effectively only a few parameters are used in token computation, and most calculations are sparse. Hence, sparsity emerges as an effective solution to this problem. Rather than relying on the entire attention matrix, one can utilize an approximate or sparse version of attention to achieve almost the same results much faster. The backbone of this approach is the idea that tokens do not require the entire context; they only need local context, and thus, most of the computation carried out is wasteful. In this blog, we analyze the types of attention patterns that emerge and how to use them to our advantage for faster and efficient LLMs.},
+  booktitle = {ICLR Blogposts 2026},
+  year = {2026},
+  date = {April 27, 2026},
+  note = {https://iclr-blogposts.github.io/2026/blog/2026/sparsity/},
+  url  = {https://iclr-blogposts.github.io/2026/blog/2026/sparsity/}
 }</pre>
         </div>
     </div>
