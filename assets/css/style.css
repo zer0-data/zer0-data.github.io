@@ -278,35 +278,6 @@ a:hover {
     color: var(--accent-color);
 }
 
-.research-snapshot {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    max-width: 660px;
-    margin-top: 1.35rem;
-}
-
-.research-snapshot div {
-    background: var(--surface-color);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 0.85rem 0.95rem;
-}
-
-.research-snapshot strong {
-    display: block;
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    line-height: 1.15;
-}
-
-.research-snapshot span {
-    display: block;
-    color: var(--text-tertiary);
-    font-size: 0.78rem;
-    margin-top: 0.18rem;
-}
-
 .content-container {
     padding-top: 2rem;
     padding-bottom: var(--section-spacing);
@@ -345,6 +316,16 @@ section > h2 {
     gap: 1rem;
 }
 
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.full-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .focus-item,
 .item {
     background-color: var(--surface-color);
@@ -364,6 +345,23 @@ section > h2 {
 .focus-item p {
     color: var(--text-secondary);
     font-size: 0.92rem;
+}
+
+.compact-item p {
+    color: var(--text-secondary);
+    font-size: 0.93rem;
+}
+
+.section-action {
+    margin-top: 1rem;
+    font-size: 0.92rem;
+}
+
+.section-action a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 700;
 }
 
 .item {
@@ -623,18 +621,15 @@ footer {
         justify-content: center;
     }
 
-    .research-snapshot {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        max-width: 100%;
-    }
-
     .section-heading {
         grid-template-columns: 1fr;
         gap: 0.35rem;
         align-items: start;
     }
 
-    .focus-grid {
+    .focus-grid,
+    .project-grid,
+    .full-grid {
         grid-template-columns: 1fr;
     }
 
@@ -682,10 +677,6 @@ footer {
 
     .tagline {
         font-size: 1rem;
-    }
-
-    .research-snapshot {
-        grid-template-columns: 1fr;
     }
 
     .item,

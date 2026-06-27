@@ -1,0 +1,221 @@
+---
+layout: default
+---
+<section id="projects">
+    <div class="section-heading">
+        <h2>Projects</h2>
+        <p>A broader archive of research systems, applied ML builds, and hackathon prototypes from the resume and GitHub.</p>
+    </div>
+
+    <div class="project-grid full-grid">
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">ParkWatch</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">2026</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/parkwatch" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Built an AI-powered parking-enforcement intelligence dashboard for Bengaluru traffic teams with GraphSAGE hotspot forecasting and Mappls road-aware A* patrol sequencing.</li>
+                <li>Added traffic-delay exposure estimates, analyst explanations, scenario analysis, and exportable action plans through a Next.js + FastAPI stack.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">Research Corpus Agent</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">April 2026</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/Research-Corpus-Agent" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Designed a multi-agent RAG system for scientific literature analysis over 100K+ arXiv papers using planner, retriever, analyst, and critic agents.</li>
+                <li>Constructed a hybrid retrieval stack with BGE, BM25, ColBERT, reciprocal-rank fusion, cross-encoder reranking, and multimodal figure/table understanding.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">GNSS Anti-Spoofing Detection</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">April 2026</span>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Designed an early-fusion Transformer for GNSS spoofing detection over 112-dimensional multi-channel feature sequences.</li>
+                <li>Built physics-informed feature engineering pipelines and achieved a <strong>0.971</strong> average F1-score across 5-fold cross-validation.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">Credit Card Default Prediction</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">April 2026 &ndash; May 2026</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/Credit-card-default" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Developed an end-to-end credit-risk prediction pipeline on 30K customer records with SMOTE-based imbalance handling and model comparison across Logistic Regression, Random Forest, LightGBM, and XGBoost.</li>
+                <li>Performed Bayesian hyperparameter optimization with Optuna and SHAP-based explainability, reaching <strong>0.84 ROC-AUC</strong> with XGBoost.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">GATE-IR</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">December 2025 &ndash; February 2026</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/GATE-IR" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Formulated a gated thermal perception pipeline that routes infrared images through weather-specific enhancement modules before YOLO-based detection.</li>
+                <li>Improved thermal detection performance from <strong>35%</strong> to <strong>45% mAP@0.5</strong> while preserving near-YOLO latency.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">ASMS: Adaptive Semantic-Momentum Sampling</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">December 2025 &ndash; January 2026</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/ASMS" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Proposed a diffusion LLM decoding framework combining confidence momentum, semantic hysteresis, and entropy-aware control to mitigate token oscillation and hallucination lock-in.</li>
+                <li>Improved GSM8K reasoning accuracy from roughly <strong>60%</strong> to <strong>78%</strong> over confidence-based remasking baselines.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">FOCUS: Sparse Token Selection with Selective Attention</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">June 2025 &ndash; December 2025</span>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Trained a lightweight neural token-pruning model on SQuAD attention distributions to identify high-utility context tokens before inference.</li>
+                <li>Pruned candidate context tokens by over <strong>60%</strong> and achieved up to <strong>1.7x</strong> decoding speedup while retaining over <strong>97%</strong> of dense-attention QA performance.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">AutoGenx</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">August 2025</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/AutoGenx" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Built a multimodal website-generation platform using Flask and Gemini APIs to transform text prompts, sketches, mockups, and Figma wireframes into deployable web apps.</li>
+                <li>Implemented code generation, packaging, live preview, and GitHub Pages deployment workflows.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">Elyx Health Dashboard</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">August 2025</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/ElyxLifeHackathon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Built a full-stack health intelligence platform with Flask, JavaScript, Tailwind CSS, and Chart.js for biomarkers, wearables, diagnostics, and patient-engagement views.</li>
+                <li>Integrated GPT-based retrieval and question answering over structured and unstructured healthcare data.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">ViralStake</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">October 2025</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/ViralStakePy" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Developed a prediction platform using FastAPI, MongoDB, Streamlit, and Twitter APIs, enabling users to stake virtual assets on tweet-virality forecasts.</li>
+                <li>Integrated Gemini-powered tweet analysis to generate virality scores and explainable engagement insights.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">Image Classification Pipeline for an Adversarially Attacked Dataset</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">January 2025 &ndash; February 2025</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/Image-Classification-Pipeline-for-An-Adversarially-Attacked-Dataset" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Designed a Continuous Attribute Learning architecture using ResNet50 and multi-task learning to study interpretability, overfitting, and failure modes.</li>
+                <li>Built a CLIP ensemble with prompt ensembling and test-time augmentation, achieving <strong>96%</strong> accuracy and outperforming a single-model zero-shot baseline by <strong>6%</strong>.</li>
+            </ul>
+        </article>
+
+        <article class="item compact-item">
+            <div class="item-header">
+                <div class="title-group">
+                    <h3 class="project-title">Coherent Multimodal Story Generation via Adaptive Feedback</h3>
+                </div>
+                <div class="meta-group">
+                    <span class="date">December 2024 &ndash; January 2025</span>
+                    <div class="links">
+                        <a href="https://github.com/zer0-data/Story-generation-with-Images" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="details">
+                <li>Fine-tuned OPT-1.3B using LoRA/PEFT on fantasy storytelling data and integrated it with Stable Diffusion 1.5 for a multimodal text-image generation pipeline.</li>
+                <li>Implemented coherence scoring, dynamic summarization, entity tracking, and adaptive parameter control for long-horizon narrative consistency.</li>
+            </ul>
+        </article>
+    </div>
+</section>

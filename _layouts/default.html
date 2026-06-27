@@ -17,13 +17,10 @@
     <nav class="top-nav" aria-label="Primary navigation">
         <div class="nav-content">
             <div class="nav-links">
-                <a href="#research-focus">Research</a>
-                <a href="#publications">Publications</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#education">Education</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#extracurricular">Extracurricular</a>
+                <a href="{{ '/' | relative_url }}">Home</a>
+                <a href="{{ '/publications.html' | relative_url }}">Publications</a>
+                <a href="{{ '/projects.html' | relative_url }}">Projects</a>
+                <a href="{{ '/about.html' | relative_url }}">Achievements &amp; Activities</a>
             </div>
             <button class="dark-toggle" id="darkToggle" type="button" aria-label="Toggle dark mode">
                 <i class="fas fa-moon" aria-hidden="true"></i>
@@ -48,7 +45,7 @@
                         <a href="{{ '/assets/resume.pdf' | relative_url }}" class="btn-cv" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-file-alt" aria-hidden="true"></i> CV / Resume
                         </a>
-                        <a href="#publications" class="btn-secondary">View Research</a>
+                        <a href="{{ '/publications.html' | relative_url }}" class="btn-secondary">View Research</a>
                     </div>
 
                     <div class="social-links" aria-label="Contact and profiles">
@@ -60,21 +57,6 @@
                                 class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                         <a href="https://scholar.google.com/citations?user=P66NEf0AAAAJ&hl=en&oi=sra" target="_blank"
                             rel="noopener noreferrer"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Scholar</a>
-                    </div>
-
-                    <div class="research-snapshot" aria-label="Research snapshot">
-                        <div>
-                            <strong>4</strong>
-                            <span>research papers</span>
-                        </div>
-                        <div>
-                            <strong>2</strong>
-                            <span>ICLR 2026 outputs</span>
-                        </div>
-                        <div>
-                            <strong>3.3x</strong>
-                            <span>lower Phase-1 FLOPs</span>
-                        </div>
                     </div>
                 </div>
             </div>
