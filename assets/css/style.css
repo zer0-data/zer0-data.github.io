@@ -158,6 +158,9 @@ a:hover {
 .hero {
     padding: 3.2rem 0 2.1rem;
     border-bottom: 1px solid var(--border-color);
+    background:
+        radial-gradient(circle at top right, rgba(109, 74, 255, 0.08), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.4), transparent 70%);
 }
 
 .hero-card {
@@ -334,6 +337,60 @@ section > h2 {
     box-shadow: 0 10px 30px rgba(28, 39, 30, 0.045);
 }
 
+.overview-band {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.overview-copy,
+.overview-list {
+    background-color: var(--surface-color);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(28, 39, 30, 0.045);
+}
+
+.overview-copy {
+    padding: 1.5rem;
+}
+
+.overview-copy h2 {
+    font-size: 1.65rem;
+    margin: 0.35rem 0 0.55rem;
+}
+
+.overview-copy p {
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    max-width: 44ch;
+}
+
+.overview-list {
+    padding: 0.8rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.overview-item {
+    padding: 0.9rem 1rem;
+    border-radius: 6px;
+    background: linear-gradient(180deg, var(--surface-muted), transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-color), var(--card-border) 80%);
+}
+
+.overview-item strong {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--text-primary);
+}
+
+.overview-item span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
 .focus-item {
     padding: 1.35rem;
 }
@@ -350,6 +407,47 @@ section > h2 {
 .compact-item p {
     color: var(--text-secondary);
     font-size: 0.93rem;
+}
+
+.compact-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.card-kicker {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-bottom: 0.55rem;
+    padding: 0.18rem 0.48rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-color), white 88%);
+    color: var(--accent-color);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.compact-item .project-title {
+    margin-bottom: 0.45rem;
+}
+
+.card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 0.85rem;
+}
+
+.card-tagline {
+    color: var(--text-tertiary) !important;
+    font-size: 0.82rem !important;
+    line-height: 1.45;
+    max-width: 22ch;
 }
 
 .section-action {
@@ -627,6 +725,10 @@ footer {
         align-items: start;
     }
 
+    .overview-band {
+        grid-template-columns: 1fr;
+    }
+
     .focus-grid,
     .project-grid,
     .full-grid {
@@ -682,6 +784,16 @@ footer {
     .item,
     .focus-item {
         padding: 1.05rem;
+    }
+
+    .overview-copy,
+    .overview-list {
+        padding: 1.05rem;
+    }
+
+    .card-footer {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .section-heading h2,
