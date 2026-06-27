@@ -8,24 +8,25 @@
     <meta name="description" content="{{ site.description }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Primary navigation">
         <div class="nav-content">
             <div class="nav-links">
-                <a href="#education">Education</a>
+                <a href="#research-focus">Research</a>
                 <a href="#publications">Publications</a>
                 <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
                 <a href="#achievements">Achievements</a>
                 <a href="#extracurricular">Extracurricular</a>
             </div>
-            <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
+            <button class="dark-toggle" id="darkToggle" type="button" aria-label="Toggle dark mode">
+                <i class="fas fa-moon" aria-hidden="true"></i>
             </button>
         </div>
     </nav>
@@ -35,30 +36,45 @@
             <div class="hero-card">
                 <div class="hero-photo">
                     <img src="{{ '/assets/images/IMG-20250122-WA0015.jpg' | relative_url }}" alt="{{ site.author }}"
-                        class="profile-pic"
-                        onerror="this.onerror=null; this.src='{{ '/assets/images/placeholder.svg' | relative_url }}';">
+                        class="profile-pic">
                 </div>
                 <div class="hero-text">
+                    <p class="eyebrow">Researcher building efficient long-context language systems</p>
                     <h1>{{ site.author }}</h1>
-                    <p class="tagline">Bachelor of Technology &mdash; Electrical Engineering, IIT Roorkee</p>
-                    <p class="location">Gurugram, Haryana, India</p>
-                    <p class="research-interests">Research interests: efficient inference for large language models; KV-cache compression, sparse and distributed attention, long-context reasoning and Diffusion LLMs</p>
+                    <p class="tagline">Electrical Engineering undergraduate at IIT Roorkee working on efficient LLM inference, sparse attention, KV-cache compression, and diffusion language models.</p>
+                    <p class="location"><i class="fas fa-location-dot" aria-hidden="true"></i> Gurugram, Haryana, India</p>
 
                     <div class="hero-actions">
-                        <a href="/assets/resume.pdf" class="btn-cv" target="_blank">
-                            <i class="fas fa-file-alt"></i> CV / Resume
+                        <a href="{{ '/assets/resume.pdf' | relative_url }}" class="btn-cv" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-file-alt" aria-hidden="true"></i> CV / Resume
                         </a>
+                        <a href="#publications" class="btn-secondary">View Research</a>
                     </div>
 
-                    <div class="social-links">
-                        <a href="mailto:{{ site.email }}" title="Email"><i class="fas fa-envelope"></i> Email</a>
-                        <a href="tel:+917838668881" title="Phone"><i class="fas fa-phone"></i> +91-7838668881</a>
+                    <div class="social-links" aria-label="Contact and profiles">
+                        <a href="mailto:{{ site.email }}" title="Email"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a>
+                        <a href="tel:+917838668881" title="Phone"><i class="fas fa-phone" aria-hidden="true"></i> +91-7838668881</a>
                         <a href="https://linkedin.com/in/aryan-sood-05052k06" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                            rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
                         <a href="https://github.com/zer0-data" target="_blank" rel="noopener noreferrer"><i
-                                class="fab fa-github"></i> GitHub</a>
+                                class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                         <a href="https://scholar.google.com/citations?user=P66NEf0AAAAJ&hl=en&oi=sra" target="_blank"
-                            rel="noopener noreferrer"><i class="fas fa-graduation-cap"></i> Scholar</a>
+                            rel="noopener noreferrer"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Scholar</a>
+                    </div>
+
+                    <div class="research-snapshot" aria-label="Research snapshot">
+                        <div>
+                            <strong>4</strong>
+                            <span>research papers</span>
+                        </div>
+                        <div>
+                            <strong>2</strong>
+                            <span>ICLR 2026 outputs</span>
+                        </div>
+                        <div>
+                            <strong>3.3x</strong>
+                            <span>lower Phase-1 FLOPs</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,7 +94,6 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Dark mode
         const toggle = document.getElementById('darkToggle');
         const icon = toggle.querySelector('i');
 
@@ -100,10 +115,17 @@
             }
         });
 
-        // BibTeX toggles
-        document.querySelectorAll('.bibtex-btn').forEach(btn => {
+        document.querySelectorAll('.bibtex-btn').forEach((btn, index) => {
+            const block = btn.closest('.bibtex-toggle').querySelector('.bibtex-block');
+            const blockId = block.id || `bibtex-${index + 1}`;
+            block.id = blockId;
+            btn.setAttribute('aria-controls', blockId);
+            btn.setAttribute('aria-expanded', 'false');
+
             btn.addEventListener('click', () => {
-                btn.closest('.bibtex-toggle').classList.toggle('open');
+                const wrapper = btn.closest('.bibtex-toggle');
+                const isOpen = wrapper.classList.toggle('open');
+                btn.setAttribute('aria-expanded', String(isOpen));
             });
         });
     </script>

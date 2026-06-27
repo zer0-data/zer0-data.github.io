@@ -1,29 +1,37 @@
 ---
 layout: default
 ---
-<section id="education">
-    <h2>Education</h2>
-    <div class="item">
-        <div class="item-header">
-            <div class="title-group">
-                <h3 class="institution">Indian Institute of Technology Roorkee</h3>
-                <span class="degree">Bachelor of Technology in Electrical Engineering</span>
-            </div>
-            <div class="meta-group">
-                <span class="date">Aug. 2024 &ndash; 2028</span>
-                <span class="grade">CGPA: 8.175/10 (3.538/4)*</span>
-            </div>
-        </div>
-        <ul class="details">
-            <li><span class="note">* US scale conversion calculated via Scholaro methodology.</span></li>
-        </ul>
+<section id="research-focus" class="research-focus">
+    <div class="section-heading">
+        <h2>Research Focus</h2>
+        <p>I work on making long-context and diffusion language models more efficient without giving up the behavior that makes them useful.</p>
+    </div>
+    <div class="focus-grid">
+        <article class="focus-item">
+            <span class="focus-kicker">Inference Efficiency</span>
+            <h3>Long-context LLM systems</h3>
+            <p>KV-cache compression, sparse attention, distributed attention, and evaluation pipelines for scaling context length under real compute constraints.</p>
+        </article>
+        <article class="focus-item">
+            <span class="focus-kicker">Diffusion LLMs</span>
+            <h3>Masking and feedback dynamics</h3>
+            <p>Studying how remasking, interpolation, and embedding geometry affect convergence, hallucination lock-in, and fine-tuning stability.</p>
+        </article>
+        <article class="focus-item">
+            <span class="focus-kicker">Applied ML</span>
+            <h3>Vision and multimodal systems</h3>
+            <p>Computer vision, synthetic data, thermal/EO imagery, and retrieval systems that bridge research prototypes with practical engineering.</p>
+        </article>
     </div>
 </section>
 
 <section id="publications">
-    <h2>Publications</h2>
+    <div class="section-heading">
+        <h2>Selected Publications</h2>
+        <p>Recent research outputs across efficient attention, long-context inference, and diffusion language models.</p>
+    </div>
 
-    <div class="item publication-item">
+    <div class="item publication-item featured">
         <div class="item-header">
             <div class="title-group">
                 <h3 class="project-title">More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression</h3>
@@ -32,9 +40,8 @@ layout: default
             <div class="meta-group">
                 <span class="badge badge-accepted">ICLR 2026</span>
                 <div class="links">
-                    <a href="https://arxiv.org/abs/2602.02199" class="btn-preprint" target="_blank">Preprint</a>
-                    &nbsp;
-                    <a href="https://github.com/zer0-data/LASER-KV" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://arxiv.org/abs/2602.02199" class="btn-preprint" target="_blank" rel="noopener noreferrer">Preprint</a>
+                    <a href="https://github.com/zer0-data/LASER-KV" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
@@ -42,23 +49,21 @@ layout: default
             <li>Introduced LASER-KV, a KV-cache compression method achieving up to <strong>10% higher accuracy at 128k context</strong> over greedy pruning baselines via block-wise accumulation and <strong>Exact-LSH sampling</strong>.</li>
         </ul>
         <div class="bibtex-toggle">
-            <button class="bibtex-btn"><i class="fas fa-quote-right"></i> BibTeX</button>
+            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
             <pre class="bibtex-block">@article{DBLP:journals/corr/abs-2602-02199,
   publtype={informal},
   author={Aryan Sood and Tanvi Sharma and Vansh Agrawal},
   title={More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression},
   year={2026},
   month={February},
-  cdate={1769904000000},
   journal={CoRR},
   volume={abs/2602.02199},
   url={https://doi.org/10.48550/arXiv.2602.02199}
-}     url={https://arxiv.org/abs/2602.02199}, 
 }</pre>
         </div>
     </div>
 
-    <div class="item publication-item">
+    <div class="item publication-item featured">
         <div class="item-header">
             <div class="title-group">
                 <h3 class="project-title">Dropping the Anchor: Statistical Summarization for Distributed Systems via Pulsar Attention</h3>
@@ -67,24 +72,51 @@ layout: default
             <div class="meta-group">
                 <span class="badge badge-review">ICML 2026</span>
                 <div class="links">
-                    <a href="https://drive.google.com/file/d/1g4j1CrFPpKGZpDDxcGOFwFhXEpfPlc9g/view?usp=sharing" class="btn-preprint" target="_blank">Preprint</a>
-                    &nbsp;
-                    <a href="https://github.com/zer0-data/Statistical-Cross-Attention/tree/main" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://drive.google.com/file/d/1g4j1CrFPpKGZpDDxcGOFwFhXEpfPlc9g/view?usp=sharing" class="btn-preprint" target="_blank" rel="noopener noreferrer">Preprint</a>
+                    <a href="https://github.com/zer0-data/Statistical-Cross-Attention/tree/main" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
-            <li>Collaborated with a researcher at NVIDIA to further develop StarAttention. Pulsar Attention enables cross-block communication using lightweight summaries, achieving a <strong>4.97%</strong> improvement at long context over the full attention baseline.</li>
+            <li>Developed Pulsar Attention for distributed long-context inference, replacing static anchor duplication with content-aware summaries and reporting up to <strong>4.7%</strong> accuracy gain over dense attention, <strong>6.1%</strong> over Star Attention, and <strong>3.3x</strong> lower Phase-1 FLOPs.</li>
         </ul>
         <div class="bibtex-toggle">
-            <button class="bibtex-btn"><i class="fas fa-quote-right"></i> BibTeX</button>
-            <pre class="bibtex-block">@inproceedings{
-sood2026dropping,
-title={Dropping the Anchor: Statistical Context Summarization for Distributed Systems via Pulsar Attention},
-author={Aryan Sood and Shantanu Acharya},
-booktitle={AdaptFM: Resource-Adaptive Foundation Model Inference},
-year={2026},
-url={https://openreview.net/forum?id=uCthChFfbe}
+            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
+            <pre class="bibtex-block">@inproceedings{sood2026dropping,
+  title={Dropping the Anchor: Statistical Context Summarization for Distributed Systems via Pulsar Attention},
+  author={Aryan Sood and Shantanu Acharya},
+  booktitle={AdaptFM: Resource-Adaptive Foundation Model Inference},
+  year={2026},
+  url={https://openreview.net/forum?id=uCthChFfbe}
+}</pre>
+        </div>
+    </div>
+
+    <div class="item publication-item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="project-title">Lost in Interpolation: Why Predictive Feedback Fails in Diffusion Language Models</h3>
+                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Ishaan Bansal, Lavanya Nigam, Vidit Aggarwak</span>
+            </div>
+            <div class="meta-group">
+                <span class="badge badge-review">Under Review</span>
+                <span class="context-label">Workshop Paper</span>
+                <div class="links">
+                    <a href="https://drive.google.com/file/d/1AjV1E9daFqiZV53f2k8gXBFoycvoKmj7/view?usp=sharing" class="btn-preprint" target="_blank" rel="noopener noreferrer">Preprint</a>
+                    <a href="https://github.com/ishnbl/soft-masked-diffusion-language-models" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Introduced spherical soft-masking for diffusion LLMs, replacing Euclidean LERP feedback with <strong>SLERP over Frechet means</strong> to mitigate embedding norm collapse during MDLM fine-tuning.</li>
+        </ul>
+        <div class="bibtex-toggle">
+            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
+            <pre class="bibtex-block">@article{sood2026lostinterpolation,
+  title={Lost in Interpolation: Why Predictive Feedback Fails in Diffusion Language Models},
+  author={Sood, Aryan and Bansal, Ishaan and Nigam, Lavanya and Aggarwak, Vidit},
+  journal={Workshop paper under review},
+  year={2026}
 }</pre>
         </div>
     </div>
@@ -98,7 +130,7 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="badge badge-accepted">ICLR 2026</span>
                 <div class="links">
-                    <a href="https://iclr-blogposts.github.io/2026/blog/2026/sparsity/" target="_blank">Blog</a>
+                    <a href="https://iclr-blogposts.github.io/2026/blog/2026/sparsity/" target="_blank" rel="noopener noreferrer">Blog</a>
                 </div>
             </div>
         </div>
@@ -106,23 +138,40 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <li>Surveyed sparsity-based efficiency methods for transformers, organizing them into a unified taxonomy distinguishing <strong>static structural patterns</strong> from <strong>dynamic, attention-driven</strong> approaches.</li>
         </ul>
         <div class="bibtex-toggle">
-            <button class="bibtex-btn"><i class="fas fa-quote-right"></i> BibTeX</button>
+            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
             <pre class="bibtex-block">@inproceedings{sood2026dontlookup,
-  author = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},
-  title = {Don't Look Up (Every Token): Escaping Quadratic Complexity via Geometric Patterns and Algorithms},
-  abstract = {Large Language Models (LLMs) have brought about a significant change in the field of artificial intelligence, where they have transitioned in scope from being specialized research tools to common resources that drive the next generation of software. With increasing model parameters and training data, LLMs demonstrate new abilities in reasoning, code generation, and solving complex problems that were once considered unattainable. However, scaling these models effectively for long-context applications uniquely poses a challenge. This is primarily due to the inherent limitations of the self-attention mechanism, which has quadratic time complexity. This quadratic bottleneck hinders applications for long documents, high-resolution images, and large codebases, among others. However, what is interesting to observe is that effectively only a few parameters are used in token computation, and most calculations are sparse. Hence, sparsity emerges as an effective solution to this problem. Rather than relying on the entire attention matrix, one can utilize an approximate or sparse version of attention to achieve almost the same results much faster. The backbone of this approach is the idea that tokens do not require the entire context; they only need local context, and thus, most of the computation carried out is wasteful. In this blog, we analyze the types of attention patterns that emerge and how to use them to our advantage for faster and efficient LLMs.},
-  booktitle = {ICLR Blogposts 2026},
-  year = {2026},
-  date = {April 27, 2026},
-  note = {https://iclr-blogposts.github.io/2026/blog/2026/sparsity/},
-  url  = {https://iclr-blogposts.github.io/2026/blog/2026/sparsity/}
+  author={Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},
+  title={Don't Look Up (Every Token): Escaping Quadratic Complexity via Geometric Patterns and Algorithms},
+  booktitle={ICLR Blogposts 2026},
+  year={2026},
+  url={https://iclr-blogposts.github.io/2026/blog/2026/sparsity/}
 }</pre>
         </div>
     </div>
 </section>
 
 <section id="experience">
-    <h2>Experience</h2>
+    <div class="section-heading">
+        <h2>Experience</h2>
+        <p>Research and engineering roles spanning long-context LLMs, distributed inference, and computer vision.</p>
+    </div>
+
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="institution">Shantanu Acharya, Research Scientist at NVIDIA</h3>
+                <span class="role">Independent Research Intern</span>
+            </div>
+            <div class="meta-group">
+                <span class="date">March 2026 &ndash; May 2026</span>
+            </div>
+        </div>
+        <ul class="details">
+            <li>Designed <strong>Pulsar Attention</strong>, a distributed long-context LLM inference framework replacing static anchor duplication with content-aware statistical summaries.</li>
+            <li>Implemented the experimental stack: distributed attention, <strong>Max-IDF summarization</strong>, FlashAttention-based inference, and evaluation on <strong>RULER</strong> and <strong>BABILong</strong>.</li>
+            <li>Co-authored a paper reporting up to <strong>4.7%</strong> accuracy gain over dense attention, <strong>6.1%</strong> over Star Attention, and <strong>3.3x</strong> lower Phase-1 FLOPs.</li>
+        </ul>
+    </div>
 
     <div class="item">
         <div class="item-header">
@@ -142,7 +191,10 @@ url={https://openreview.net/forum?id=uCthChFfbe}
 </section>
 
 <section id="projects">
-    <h2>Projects</h2>
+    <div class="section-heading">
+        <h2>Projects</h2>
+        <p>Selected technical builds across language modeling, retrieval, computer vision, and applied AI systems.</p>
+    </div>
 
     <div class="item">
         <div class="item-header">
@@ -167,7 +219,7 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">April 2026</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/Research-Corpus-Agent" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/zer0-data/Research-Corpus-Agent" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
@@ -185,13 +237,13 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">March 2026</span>
                 <div class="links">
-                    <a href="https://github.com/APT-KK/GNSS_Spoofing" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/APT-KK/GNSS_Spoofing" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
             <li>Built a Transformer encoder with 8-channel early fusion over 14 features per satellite, detecting GPS spoofing by learning cross-satellite signal inconsistencies; achieved <strong>Val F1 of 0.9798</strong> across 5-fold CV.</li>
-            <li>Engineered paper-inspired features (CNO spatial/temporal std, EML discriminator) capturing the physical signature of single-source spoofing; trained with AdamW, BCELoss, and per-fold early stopping.</li>
+            <li>Engineered paper-inspired features capturing the physical signature of single-source spoofing; trained with AdamW, BCELoss, and per-fold early stopping.</li>
         </ul>
     </div>
 
@@ -203,12 +255,12 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">January 2026</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/GATE-IR" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/zer0-data/GATE-IR" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
-            <li>Built a three-stage pipeline for object detection in adverse weather using thermal imagery: a low-latency <strong>WeatherGate classifier</strong> (Clear/Fog/Rain) followed by weather-specific enhancement (adaptive gamma, LSRB+CLAHE), feeding a modified <strong>YOLOv8-Small</strong> with ViT neck and P2 head for small-object recovery.</li>
+            <li>Built a three-stage pipeline for object detection in adverse weather using thermal imagery: a low-latency <strong>WeatherGate classifier</strong>, weather-specific enhancement, and modified <strong>YOLOv8-Small</strong> detector.</li>
             <li>Applied <strong>CycleGAN</strong> for IR-to-pseudo-RGB translation and <strong>knowledge distillation</strong> to transfer RGB-pretrained teacher weights to a single-channel thermal student.</li>
         </ul>
     </div>
@@ -221,7 +273,7 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">December 2025</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/ASMS" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/zer0-data/ASMS" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
@@ -239,13 +291,13 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">October 2025</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/ViralStakePy" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/zer0-data/ViralStakePy" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
-            <li>Social prediction platform for tweet virality forecasting: users stake virtual points on AI-scored predictions, earning <strong>NFT rewards</strong> via Ethereum; backend uses <strong>FastAPI + MongoDB</strong>, analysis powered by <strong>Gemini API</strong>.</li>
-            <li>Computes confidence scores (0&ndash;1) and viral indicators from Twitter URL submissions; Streamlit frontend with Plotly visualizations and full blockchain minting integration.</li>
+            <li>Social prediction platform for tweet virality forecasting: users stake virtual points on AI-scored predictions, earning <strong>NFT rewards</strong> via Ethereum; backend uses <strong>FastAPI + MongoDB</strong>.</li>
+            <li>Computes confidence scores and viral indicators from Twitter URL submissions; Streamlit frontend with Plotly visualizations and blockchain minting integration.</li>
         </ul>
     </div>
 
@@ -257,12 +309,12 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">September 2025</span>
                 <div class="links">
-                    <a href="https://github.com/sgdescent/FOCUS" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/sgdescent/FOCUS" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
-            <li>Developed a framework to reduce autoregressive inference overhead in LLMs by <strong>training a NN</strong> to dynamically select <strong>relevant context tokens</strong> per query.</li>
+            <li>Developed a framework to reduce autoregressive inference overhead in LLMs by <strong>training a neural network</strong> to dynamically select <strong>relevant context tokens</strong> per query.</li>
             <li>Incorporated a layer-wise sparse attention mask adapting TidalDecode principles, substantially reducing per-step computational complexity.</li>
         </ul>
     </div>
@@ -275,13 +327,13 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">August 2025</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/AutoGenx" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/zer0-data/AutoGenx" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
-            <li>Flask app that generates and deploys websites from text prompts, canvas sketches, uploaded images, or <strong>Figma wireframes</strong> using <strong>Gemini API</strong> for code generation with live preview and GitHub Pages deployment.</li>
-            <li>Supports multi-input modalities: sketch-to-PNG conversion, Figma file rendering, and ZIP download; integrates Pydantic validation with optional GitHub PAT for one-click deployment.</li>
+            <li>Flask app that generates and deploys websites from text prompts, canvas sketches, uploaded images, or <strong>Figma wireframes</strong> using <strong>Gemini API</strong> with live preview and GitHub Pages deployment.</li>
+            <li>Supports multi-input modalities, ZIP download, Pydantic validation, and optional GitHub PAT for one-click deployment.</li>
         </ul>
     </div>
 
@@ -293,12 +345,12 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">August 2025</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/ElyxLifeHackathon" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/zer0-data/ElyxLifeHackathon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
-            <li>Healthcare provider dashboard aggregating member biomarkers, wearable metrics (sleep, HRV, heart rate), and diagnostic timelines via <strong>8 RESTful endpoints</strong>; visualized with Chart.js and Tailwind CSS.</li>
+            <li>Healthcare provider dashboard aggregating member biomarkers, wearable metrics, and diagnostic timelines via <strong>8 RESTful endpoints</strong>; visualized with Chart.js and Tailwind CSS.</li>
             <li>Integrated <strong>GPT-powered AI chat assistant</strong> enabling natural-language queries over member health records, with Flask backend and static JSON/CSV data layer.</li>
         </ul>
     </div>
@@ -312,13 +364,13 @@ url={https://openreview.net/forum?id=uCthChFfbe}
                 <span class="date">January 2025</span>
                 <div class="links">
                     <a href="https://github.com/zer0-data/Image-Classification-Pipeline-for-An-Adversarially-Attacked-Datase"
-                        target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
         <ul class="details">
             <li>Implemented a robust classification pipeline using an <strong>ensemble of CLIP models</strong> to handle adversarially perturbed inputs.</li>
-            <li>Improved robustness via diverse prompt templates and <strong>test-time augmentation (TTA)</strong> strategies.</li>
+            <li>Improved robustness via diverse prompt templates and <strong>test-time augmentation</strong> strategies.</li>
         </ul>
     </div>
 
@@ -330,8 +382,8 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">December 2024</span>
                 <div class="links">
-                    <a href="https://github.com/zer0-data/Story-generation-with-Images" target="_blank"><i
-                            class="fab fa-github"></i> GitHub</a>
+                    <a href="https://github.com/zer0-data/Story-generation-with-Images" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
@@ -342,8 +394,31 @@ url={https://openreview.net/forum?id=uCthChFfbe}
     </div>
 </section>
 
+<section id="education">
+    <div class="section-heading">
+        <h2>Education</h2>
+    </div>
+    <div class="item">
+        <div class="item-header">
+            <div class="title-group">
+                <h3 class="institution">Indian Institute of Technology Roorkee</h3>
+                <span class="degree">Bachelor of Technology in Electrical Engineering</span>
+            </div>
+            <div class="meta-group">
+                <span class="date">Aug. 2024 &ndash; 2028</span>
+                <span class="grade">CGPA: 8.175/10 (3.538/4)*</span>
+            </div>
+        </div>
+        <ul class="details">
+            <li><span class="note">* US scale conversion calculated via Scholaro methodology.</span></li>
+        </ul>
+    </div>
+</section>
+
 <section id="achievements">
-    <h2>Achievements</h2>
+    <div class="section-heading">
+        <h2>Achievements</h2>
+    </div>
     <div class="item">
         <ul class="achievement-list">
             <li><strong>All India Rank 1519, JEE Advanced 2024</strong> &ndash; <em>Top exam for IIT admission, taken by 150k+ students nationally.</em></li>
@@ -355,7 +430,9 @@ url={https://openreview.net/forum?id=uCthChFfbe}
 </section>
 
 <section id="extracurricular">
-    <h2>Extracurricular</h2>
+    <div class="section-heading">
+        <h2>Extracurricular</h2>
+    </div>
     <div class="item">
         <div class="item-header">
             <div class="title-group">
@@ -365,8 +442,8 @@ url={https://openreview.net/forum?id=uCthChFfbe}
             <div class="meta-group">
                 <span class="date">February 2025 &ndash; Present</span>
                 <div class="links">
-                    <a href="https://vlg.iitr.ac.in/" target="_blank">VLG Website</a> &nbsp;|&nbsp;
-                    <a href="https://github.com/vlgiitr" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://vlg.iitr.ac.in/" target="_blank" rel="noopener noreferrer">VLG Website</a>
+                    <a href="https://github.com/vlgiitr" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
                 </div>
             </div>
         </div>
