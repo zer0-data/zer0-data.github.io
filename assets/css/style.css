@@ -1,44 +1,44 @@
 /* DESIGN TOKENS (Light Mode) */
 :root {
-    --bg-color: #f8fafc;
+    --bg-color: #fbfbf8;
     --surface-color: #ffffff;
-    --surface-muted: #f1f5f9;
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --text-tertiary: #64748b;
-    --accent-color: #4f46e5;
-    --accent-secondary: #818cf8;
-    --border-color: #e2e8f0;
-    --hover-bg: #e0e7ff;
-    --badge-accepted-bg: #dcfce7;
-    --badge-accepted-color: #166534;
-    --badge-review-bg: #fef3c7;
-    --badge-review-color: #92400e;
-    --btn-primary-bg: #4f46e5;
+    --surface-muted: #f2f5f1;
+    --text-primary: #161616;
+    --text-secondary: #3f4641;
+    --text-tertiary: #687069;
+    --accent-color: #0a6847;
+    --accent-secondary: #6d4aff;
+    --border-color: #d7ddd4;
+    --hover-bg: #edf3ea;
+    --badge-accepted-bg: #dff3e8;
+    --badge-accepted-color: #07583c;
+    --badge-review-bg: #ece8ff;
+    --badge-review-color: #4830a3;
+    --btn-primary-bg: #0a6847;
     --btn-primary-color: #ffffff;
     --heading-font: 'Inter', sans-serif;
     --body-font: 'Inter', sans-serif;
-    --sidebar-width: 340px;
+    --sidebar-width: 320px;
 }
 
 /* DESIGN TOKENS (Dark Mode Auto-Switch) */
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-color: #0f172a;
-        --surface-color: #1e293b;
-        --surface-muted: #0f172a;
-        --text-primary: #f8fafc;
-        --text-secondary: #cbd5e1;
-        --text-tertiary: #94a3b8;
-        --accent-color: #818cf8;
-        --accent-secondary: #c7d2fe;
-        --border-color: #334155;
-        --hover-bg: #1e293b;
-        --badge-accepted-bg: #064e3b;
-        --badge-accepted-color: #6ee7b7;
-        --badge-review-bg: #451a03;
-        --badge-review-color: #fcd34d;
-        --btn-primary-bg: #6366f1;
+        --bg-color: #11140f;
+        --surface-color: #181d17;
+        --surface-muted: #20281f;
+        --text-primary: #f2f5ef;
+        --text-secondary: #c7d0c3;
+        --text-tertiary: #9aa596;
+        --accent-color: #80d6ad;
+        --accent-secondary: #b9a7ff;
+        --border-color: #354033;
+        --hover-bg: #243023;
+        --badge-accepted-bg: #123d2e;
+        --badge-accepted-color: #9de7be;
+        --badge-review-bg: #30285a;
+        --badge-review-color: #c9bdff;
+        --btn-primary-bg: #6fc99f;
     }
 }
 
@@ -68,11 +68,16 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--heading-font); font-weight: 700; col
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+.sidebar-sticky::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
 }
 .main-content {
     flex-grow: 1;
     min-width: 0;
-    padding: 3rem;
+    padding: 0 3rem 3rem 3rem;
     background-color: var(--bg-color);
 }
 .content-container {
@@ -112,8 +117,16 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--heading-font); font-weight: 700; col
 .social-links a:hover { color: var(--accent-color); text-decoration: none; }
 
 /* MAIN CONTENT SECTIONS */
-.section-heading { margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.75rem; }
-.section-heading h2 { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; }
+.section-heading { 
+    margin-bottom: 2rem; 
+    border-bottom: 2px solid var(--border-color); 
+    padding: 3rem 0 0.75rem 0; 
+    position: sticky;
+    top: 0;
+    background: var(--bg-color);
+    z-index: 10;
+}
+.section-heading h2 { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0; }
 .section-heading p { color: var(--text-secondary); font-size: 1.05rem; margin-top: 0.5rem; }
 
 /* GRIDS & CARDS */
