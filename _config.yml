@@ -22,6 +22,13 @@ collections:
 # Publish posts dated "today" even when GitHub builds in UTC before the date rolls over.
 future: true
 
+defaults:
+  - scope:
+      path: ""
+      type: blogs
+    values:
+      layout: blog
+
 # Primary navigation (order matters)
 nav:
   - title: Home
