@@ -1,0 +1,15 @@
+{%- comment -%}
+  Compact publication row with hover preview (home page).
+  include params: pub, n
+{%- endcomment -%}
+{%- assign pub = include.pub -%}
+{%- assign primary = pub.links | first -%}
+<a class="pub-row{% if pub.highlight %} is-highlight{% endif %}" href="{% if primary %}{{ primary.url }}{% else %}{{ '/publications.html' | relative_url }}{% endif %}"{% if primary %} target="_blank" rel="noopener noreferrer"{% endif %}
+   data-preview-venue="{{ pub.venue_detail | default: pub.venue | escape }}"
+   data-preview-text="{{ pub.summary | strip_html | escape }}" data-reveal>
+    <span class="row-n mono">{{ include.n }}</span>
+    <span class="row-title">{{ pub.title }}</span>
+    <span class="row-venue mono">{% if pub.highlight %}<b class="row-star">★</b> {% endif %}{{ pub.venue }}</span>
+    <span class="row-arrow" aria-hidden="true">↗</span>
+    <span class="row-summary">{{ pub.summary | strip_html }}</span>
+</a>

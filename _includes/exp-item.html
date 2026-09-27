@@ -1,0 +1,28 @@
+{%- comment -%}
+  Experience entry. include params: job, compact (bool)
+{%- endcomment -%}
+{%- assign job = include.job -%}
+<li class="tl-item{% if job.placeholder %} is-placeholder{% endif %}" data-reveal>
+    <span class="tl-node" aria-hidden="true"></span>
+    <div class="tl-when mono">{{ job.dates }}</div>
+    <div class="tl-body">
+        <span class="kicker">{{ job.kind }}</span>
+        <h3 class="tl-role">{{ job.role }}</h3>
+        <p class="tl-org">{{ job.org }}</p>
+        {%- if job.placeholder %}
+        {%- unless include.compact %}<div class="skeleton" aria-hidden="true"><span></span><span></span></div>{% endunless %}
+        <p class="muted small">Details will be added soon.</p>
+        {%- elsif include.compact %}
+        <p class="tl-summary">{{ job.bullets | first }}</p>
+        {%- else %}
+        <ul class="bullets">
+            {%- for b in job.bullets %}
+            <li>{{ b }}</li>
+            {%- endfor %}
+        </ul>
+        {%- endif %}
+        {%- if job.tags and job.placeholder != true %}
+        <p class="tl-tags mono">{{ job.tags | join: " / " }}</p>
+        {%- endif %}
+    </div>
+</li>

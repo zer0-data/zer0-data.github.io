@@ -1,0 +1,53 @@
+# Experience / internships — edit this file to update the Experience page and home page timeline.
+# Newest first.
+#
+# Fields
+#   org          Organisation or lab
+#   role         Position title
+#   dates        Free text, e.g. "March 2026 – May 2026"
+#   kind         Short tag, e.g. "Research", "Computer Vision"
+#   bullets      List of achievements (HTML allowed); the first one is shown on the home page
+#   tags         Optional list of skills / tools
+#   placeholder  true renders an "upcoming" card. To publish, fill in the
+#                fields and delete the placeholder line.
+
+- org: "Simplismart"
+  role: "ML Engineer Intern"
+  dates: "September 2026 – Present"
+  kind: "Inference Optimisation"
+  bullets:
+    - "Working on <strong>LLM inference optimisation</strong> for production serving, with research spanning both the <strong>pipeline level</strong> and the <strong>kernel level</strong>."
+    - "Pipeline level: profiling the end-to-end serving path to locate throughput and latency bottlenecks, and researching optimisations across request scheduling, batching, and memory handling."
+    - "Kernel level: researching and benchmarking GPU kernels for core inference operators such as attention, aiming to cut per-token latency on deployed models."
+  tags: [LLM inference, GPU kernels, Profiling, Model serving]
+
+- org: "Lexsi Labs"
+  role: "AI Research Intern"
+  dates: "August 2026 – September 2026"
+  kind: "Long-Document Generation"
+  bullets:
+    - "Worked on long-document generation and led the research project <strong>BRIEF</strong> (Bounded Regeneration In Exact Form), which regenerates long legal and financial documents clause by clause from short structural briefs derived from a reference graph."
+    - "Kept cross-reference fidelity near <strong>0.98</strong> across a controlled length sweep with a near-constant <strong>~86-token</strong> maximum prompt, where one-pass generation exceeds <strong>20K tokens</strong> per call at 1,200 clauses."
+    - "Improved extractor-verifiable section and cross-reference topology over one-pass generation on <strong>CUAD</strong> contracts and <strong>EDGAR EX-10</strong> exhibits, and designed <strong>BRIEF-L</strong>, a dependency-ordered plug-in that lifts within-release coherence from near zero to <strong>0.44–0.70</strong> of cited clauses."
+    - "Ran retrieval-based source-linkage audits and a cross-generator replication on <strong>Llama-3.1-8B</strong>; first author of the resulting paper (under review)."
+  tags: [Long-document generation, Graph-conditioned generation, CUAD, EDGAR]
+
+- org: "Shantanu Acharya, Research Scientist at NVIDIA"
+  role: "Independent Research Intern"
+  dates: "March 2026 – May 2026"
+  kind: "LLM Research"
+  bullets:
+    - "Designed and implemented <strong>Pulsar Attention</strong>, a distributed long-context LLM inference framework that replaces static anchor duplication with content-aware statistical context summaries."
+    - "Built the experimental stack for distributed attention, <strong>Max-IDF summarization</strong>, FlashAttention-based inference, and evaluation on <strong>RULER</strong> and <strong>BABILong</strong>."
+    - "Co-authored the resulting paper, accepted to <strong>Findings of EMNLP 2026</strong>, showing up to <strong>4.7%</strong> accuracy improvement over dense attention, <strong>6.1%</strong> over Star Attention, and <strong>3.3x</strong> lower Phase-1 FLOPs."
+  tags: [Distributed attention, FlashAttention, RULER, BABILong]
+
+- org: "Auric AI Labs"
+  role: "Computer Vision Intern"
+  dates: "March 2026 – May 2026"
+  kind: "Computer Vision"
+  bullets:
+    - "Created an end-to-end synthetic EO data generation pipeline for object-detection models using controlled top-view renders from 3D military-object assets."
+    - "Developed a GPT-assisted semantic placement pipeline using probabilistic spatial priors to identify contextually valid object locations."
+    - "Combined BlenderProc rendering, Meshy AI asset generation, and RemoteCLIP-based semantic filtering to improve synthetic scene realism."
+  tags: [BlenderProc, Meshy AI, RemoteCLIP, Synthetic data]

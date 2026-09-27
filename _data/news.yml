@@ -1,0 +1,20 @@
+# News feed shown on the home page (newest first).
+#   date   Free text, e.g. "Mar 2026"
+#   text   One line (HTML allowed)
+
+- date: "Sep 2026"
+  text: "Joined <strong>Simplismart</strong> as an ML Engineer Intern, working on pipeline- and kernel-level inference optimisation."
+- date: "2026"
+  text: "<a href=\"https://arxiv.org/abs/2607.20457\"><em>Dropping the Anchor</em></a> (Pulsar Attention) accepted to <strong>Findings of EMNLP 2026</strong>."
+- date: "Aug 2026"
+  text: "Joined <strong>Lexsi Labs</strong> as an AI Research Intern, working on long-document generation (BRIEF)."
+- date: "2026"
+  text: "<a href=\"https://arxiv.org/abs/2608.06529\"><em>Lost in Interpolation</em></a> accepted at the Non-Autoregressive LM Workshop, <strong>COLM 2026</strong>."
+- date: "Mar 2026"
+  text: "Started an independent research internship with <strong>Shantanu Acharya</strong> (Research Scientist, NVIDIA) on distributed long-context inference."
+- date: "2026"
+  text: "<em>More Than a Quick Glance</em> accepted at the <strong>ICBINB Workshop, ICLR 2026</strong>."
+- date: "2026"
+  text: "<a href=\"https://iclr-blogposts.github.io/2026/blog/2026/sparsity/\"><em>Don't Look Up (Every Token)</em></a> published in the ICLR 2026 Blogpost Track."
+- date: "Feb 2026"
+  text: "Preprint of <a href=\"https://arxiv.org/abs/2602.02199\">LASER-KV</a> released on arXiv."

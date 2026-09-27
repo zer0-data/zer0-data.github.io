@@ -1,11 +1,38 @@
-title: Aryan Sood | Portfolio & Resume
+title: Aryan Sood
 author: Aryan Sood
 email: aryan_s2@ee.iitr.ac.in
+phone: "+91-7838668881"
+location: "Gurugram, Haryana, India"
 description: >- # this means to ignore newlines until "baseurl:"
-  Academic and professional resume for Aryan Sood, Electrical Engineering student at IIT Roorkee.
+  Aryan Sood — Electrical Engineering undergraduate at IIT Roorkee researching efficient
+  long-context LLM inference, sparse attention, KV-cache compression, and diffusion language models.
 url: "https://zer0-data.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 markdown: kramdown
+
+# Primary navigation (order matters)
+nav:
+  - title: Home
+    url: /
+  - title: Publications
+    url: /publications.html
+  - title: Experience
+    url: /experience.html
+  - title: Projects
+    url: /projects.html
+  - title: About
+    url: /about.html
+
+social:
+  - label: GitHub
+    url: https://github.com/zer0-data
+    icon: fab fa-github
+  - label: LinkedIn
+    url: https://linkedin.com/in/aryan-sood-05052k06
+    icon: fab fa-linkedin-in
+  - label: Google Scholar
+    url: https://scholar.google.com/citations?user=P66NEf0AAAAJ&hl=en&oi=sra
+    icon: fas fa-graduation-cap
 
 # Exclude files/folders from the build
 exclude:

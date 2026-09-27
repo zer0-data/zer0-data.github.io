@@ -1,0 +1,179 @@
+# Projects — edit this file to update the Projects page and home page.
+#
+# Fields
+#   title         Project name
+#   dates         Free text
+#   year          Short year label
+#   category      research | applied | hackathon   (drives the filter chips)
+#   kicker        Short label shown above the title
+#   featured      true to show in the home page gallery
+#   metric        Headline number shown big on the card (optional)
+#   metric_label  What the number means
+#   summary       One-line description
+#   stack         Short tech line
+#   bullets       Details for the Projects page (HTML allowed)
+#   github        Optional repository URL
+
+- title: "ParkWatch"
+  dates: "June 2026"
+  year: "2026"
+  category: applied
+  kicker: "Civic ML"
+  featured: true
+  metric: "A*"
+  metric_label: "road-aware patrol planning"
+  summary: "Parking-enforcement intelligence for Bengaluru traffic teams: GraphSAGE hotspot forecasting, patrol sequencing, and exportable action plans."
+  stack: "Next.js · FastAPI · GraphSAGE · Mappls"
+  github: "https://github.com/zer0-data/parkwatch"
+  bullets:
+    - "Built an AI-powered parking-enforcement intelligence dashboard for Bengaluru traffic teams with GraphSAGE hotspot forecasting and Mappls road-aware A* patrol sequencing."
+    - "Added traffic-delay exposure estimates, analyst explanations, scenario analysis, and exportable action plans through a Next.js + FastAPI stack."
+
+- title: "Research Corpus Agent"
+  dates: "April 2026"
+  year: "2026"
+  category: research
+  kicker: "Research Systems"
+  featured: true
+  metric: "100K+"
+  metric_label: "arXiv papers indexed"
+  summary: "Multi-agent literature RAG with planner, retriever, analyst and critic agents, hybrid retrieval, and figure/table understanding."
+  stack: "BGE · BM25 · ColBERT · RRF"
+  github: "https://github.com/zer0-data/Research-Corpus-Agent"
+  bullets:
+    - "Designed a multi-agent RAG system for scientific literature analysis over 100K+ arXiv papers using planner, retriever, analyst, and critic agents."
+    - "Constructed a hybrid retrieval stack with BGE, BM25, ColBERT, reciprocal-rank fusion, cross-encoder reranking, and multimodal figure/table understanding."
+
+- title: "GNSS Anti-Spoofing Detection"
+  dates: "April 2026"
+  year: "2026"
+  category: applied
+  kicker: "Signal ML"
+  featured: true
+  metric: "0.971"
+  metric_label: "avg. F1, 5-fold CV"
+  summary: "Early-fusion Transformer over 112-dim multi-channel GNSS sequences with physics-informed features."
+  stack: "Transformers · Feature engineering"
+  bullets:
+    - "Designed an early-fusion Transformer for GNSS spoofing detection over 112-dimensional multi-channel feature sequences."
+    - "Built physics-informed feature engineering pipelines and achieved a <strong>0.971</strong> average F1-score across 5-fold cross-validation."
+
+- title: "Credit Card Default Prediction"
+  dates: "April 2026 – May 2026"
+  year: "2026"
+  category: applied
+  kicker: "Tabular ML"
+  metric: "0.84"
+  metric_label: "ROC-AUC with XGBoost"
+  summary: "Credit-risk pipeline on 30K records with SMOTE, Optuna tuning and SHAP explainability."
+  stack: "XGBoost · LightGBM · Optuna · SHAP"
+  github: "https://github.com/zer0-data/Credit-card-default"
+  bullets:
+    - "Developed an end-to-end credit-risk prediction pipeline on 30K customer records with SMOTE-based imbalance handling and model comparison across Logistic Regression, Random Forest, LightGBM, and XGBoost."
+    - "Performed Bayesian hyperparameter optimization with Optuna and SHAP-based explainability, reaching <strong>0.84 ROC-AUC</strong> with XGBoost."
+
+- title: "GATE-IR"
+  dates: "December 2025 – February 2026"
+  year: "2025"
+  category: research
+  kicker: "Computer Vision"
+  featured: true
+  metric: "+10pt"
+  metric_label: "mAP@0.5 (35% → 45%)"
+  summary: "Gated thermal perception: weather-specific enhancement routed before lightweight YOLO detection, at near-YOLO latency."
+  stack: "Thermal imaging · YOLO · Gating"
+  github: "https://github.com/zer0-data/GATE-IR"
+  bullets:
+    - "Formulated a gated thermal perception pipeline that routes infrared images through weather-specific enhancement modules before YOLO-based detection."
+    - "Improved thermal detection performance from <strong>35%</strong> to <strong>45% mAP@0.5</strong> while preserving near-YOLO latency."
+
+- title: "ASMS: Adaptive Semantic-Momentum Sampling"
+  dates: "December 2025 – January 2026"
+  year: "2025"
+  category: research
+  kicker: "Diffusion LLMs"
+  featured: true
+  metric: "78%"
+  metric_label: "GSM8K, up from ~60%"
+  summary: "Diffusion-LLM decoding with confidence momentum, semantic hysteresis and entropy-aware control against hallucination lock-in."
+  stack: "dLLMs · Remasking · Decoding"
+  github: "https://github.com/zer0-data/ASMS"
+  bullets:
+    - "Proposed a diffusion LLM decoding framework combining confidence momentum, semantic hysteresis, and entropy-aware control to mitigate token oscillation and hallucination lock-in."
+    - "Improved GSM8K reasoning accuracy from roughly <strong>60%</strong> to <strong>78%</strong> over confidence-based remasking baselines."
+
+- title: "FOCUS: Sparse Token Selection"
+  dates: "June 2025 – December 2025"
+  year: "2025"
+  category: research
+  kicker: "Efficient Inference"
+  featured: true
+  metric: "1.7×"
+  metric_label: "decoding speedup, 97% QA retained"
+  summary: "A lightweight neural token pruner trained on attention distributions that drops 60%+ of context before inference."
+  stack: "Token pruning · Selective attention"
+  bullets:
+    - "Trained a lightweight neural token-pruning model on SQuAD attention distributions to identify high-utility context tokens before inference."
+    - "Pruned candidate context tokens by over <strong>60%</strong> and achieved up to <strong>1.7x</strong> decoding speedup while retaining over <strong>97%</strong> of dense-attention QA performance."
+
+- title: "AutoGenx"
+  dates: "August 2025"
+  year: "2025"
+  category: hackathon
+  kicker: "Generative Tools"
+  summary: "Turns prompts, sketches, mockups and Figma wireframes into deployable web apps."
+  stack: "Flask · Gemini"
+  github: "https://github.com/zer0-data/AutoGenx"
+  bullets:
+    - "Built a multimodal website-generation platform using Flask and Gemini APIs to transform text prompts, sketches, mockups, and Figma wireframes into deployable web apps."
+    - "Implemented code generation, packaging, live preview, and GitHub Pages deployment workflows."
+
+- title: "Elyx Health Dashboard"
+  dates: "August 2025"
+  year: "2025"
+  category: hackathon
+  kicker: "Health Tech"
+  summary: "Health intelligence platform for biomarkers, wearables and diagnostics with GPT-based Q&A."
+  stack: "Flask · Tailwind · Chart.js"
+  github: "https://github.com/zer0-data/ElyxLifeHackathon"
+  bullets:
+    - "Built a full-stack health intelligence platform with Flask, JavaScript, Tailwind CSS, and Chart.js for biomarkers, wearables, diagnostics, and patient-engagement views."
+    - "Integrated GPT-based retrieval and question answering over structured and unstructured healthcare data."
+
+- title: "ViralStake"
+  dates: "October 2025"
+  year: "2025"
+  category: hackathon
+  kicker: "Social Prediction"
+  summary: "Stake virtual assets on tweet-virality forecasts scored by Gemini."
+  stack: "FastAPI · MongoDB · Streamlit"
+  github: "https://github.com/zer0-data/ViralStakePy"
+  bullets:
+    - "Developed a prediction platform using FastAPI, MongoDB, Streamlit, and Twitter APIs, enabling users to stake virtual assets on tweet-virality forecasts."
+    - "Integrated Gemini-powered tweet analysis to generate virality scores and explainable engagement insights."
+
+- title: "Adversarially Attacked Image Classification"
+  dates: "January 2025 – February 2025"
+  year: "2025"
+  category: research
+  kicker: "Robust Vision"
+  metric: "96%"
+  metric_label: "accuracy, CLIP ensemble"
+  summary: "Continuous attribute learning with ResNet50 plus a prompt-ensembled CLIP classifier with TTA."
+  stack: "ResNet50 · CLIP · TTA"
+  github: "https://github.com/zer0-data/Image-Classification-Pipeline-for-An-Adversarially-Attacked-Dataset"
+  bullets:
+    - "Designed a Continuous Attribute Learning architecture using ResNet50 and multi-task learning to study interpretability, overfitting, and failure modes."
+    - "Built a CLIP ensemble with prompt ensembling and test-time augmentation, achieving <strong>96%</strong> accuracy and outperforming a single-model zero-shot baseline by <strong>6%</strong>."
+
+- title: "Multimodal Story Generation"
+  dates: "December 2024 – January 2025"
+  year: "2024"
+  category: research
+  kicker: "Multimodal Generation"
+  summary: "LoRA-tuned OPT-1.3B paired with Stable Diffusion, with coherence scoring and entity tracking for long narratives."
+  stack: "OPT-1.3B · LoRA · SD 1.5"
+  github: "https://github.com/zer0-data/Story-generation-with-Images"
+  bullets:
+    - "Fine-tuned OPT-1.3B using LoRA/PEFT on fantasy storytelling data and integrated it with Stable Diffusion 1.5 for a multimodal text-image generation pipeline."
+    - "Implemented coherence scoring, dynamic summarization, entity tracking, and adaptive parameter control for long-horizon narrative consistency."

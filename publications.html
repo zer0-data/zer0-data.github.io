@@ -1,127 +1,58 @@
 ---
 layout: default
+title: Publications
+slug: publications
+description: Publications by Aryan Sood on efficient attention, KV-cache compression, long-context inference, and diffusion language models.
 ---
-<section id="publications">
-    <div class="section-heading">
-        <h2>Publications</h2>
-        <p>Research outputs across efficient attention, long-context inference, and diffusion language models.</p>
-    </div>
+{%- assign real_pubs = site.data.publications | where_exp: "p", "p.placeholder != true" -%}
+{%- assign upcoming = site.data.publications | where: "placeholder", true -%}
+{%- assign accepted = real_pubs | where: "status", "accepted" -%}
+{%- assign in_review = real_pubs | where: "status", "review" -%}
 
-    <div class="item publication-item featured">
-        <div class="item-header">
-            <div class="title-group">
-                <h3 class="project-title">Dropping the Anchor: Statistical Summarization for Distributed Systems via Pulsar Attention</h3>
-                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Shantanu Acharya</span>
-            </div>
-            <div class="meta-group">
-                <span class="badge badge-review">ICML 2026</span>
-                <div class="links">
-                    <a href="https://drive.google.com/file/d/1g4j1CrFPpKGZpDDxcGOFwFhXEpfPlc9g/view?usp=sharing" class="btn-preprint" target="_blank" rel="noopener noreferrer">Preprint</a>
-                    <a href="https://github.com/zer0-data/Statistical-Cross-Attention" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
-                </div>
-            </div>
-        </div>
-        <ul class="details">
-            <li>Developed Pulsar Attention for distributed long-context inference, replacing static anchor duplication with content-aware summaries and reporting up to <strong>4.7%</strong> accuracy gain over dense attention, <strong>6.1%</strong> over Star Attention, and <strong>3.3x</strong> lower Phase-1 FLOPs.</li>
-        </ul>
-        <div class="bibtex-toggle">
-            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
-            <pre class="bibtex-block">@inproceedings{sood2026dropping,
-  title={Dropping the Anchor: Statistical Context Summarization for Distributed Systems via Pulsar Attention},
-  author={Aryan Sood and Shantanu Acharya},
-  booktitle={AdaptFM: Resource-Adaptive Foundation Model Inference},
-  year={2026},
-  url={https://openreview.net/forum?id=uCthChFfbe}
-}</pre>
-        </div>
-    </div>
-
-    <div class="item publication-item featured">
-        <div class="item-header">
-            <div class="title-group">
-                <h3 class="project-title">More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression</h3>
-                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Tanvi Sharma, Vansh Agrawal</span>
-            </div>
-            <div class="meta-group">
-                <span class="badge badge-accepted">ICLR 2026</span>
-                <div class="links">
-                    <a href="https://arxiv.org/abs/2602.02199" class="btn-preprint" target="_blank" rel="noopener noreferrer">Preprint</a>
-                    <a href="https://github.com/zer0-data/LASER-KV" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
-                </div>
-            </div>
-        </div>
-        <ul class="details">
-            <li>Introduced LASER-KV, a KV-cache compression method achieving up to <strong>10% higher accuracy at 128k context</strong> over greedy pruning baselines via block-wise accumulation and <strong>Exact-LSH sampling</strong>.</li>
-        </ul>
-        <div class="bibtex-toggle">
-            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
-            <pre class="bibtex-block">@article{DBLP:journals/corr/abs-2602-02199,
-  publtype={informal},
-  author={Aryan Sood and Tanvi Sharma and Vansh Agrawal},
-  title={More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression},
-  year={2026},
-  month={February},
-  journal={CoRR},
-  volume={abs/2602.02199},
-  url={https://doi.org/10.48550/arXiv.2602.02199}
-}</pre>
-        </div>
-    </div>
-
-    <div class="item publication-item">
-        <div class="item-header">
-            <div class="title-group">
-                <h3 class="project-title">Lost in Interpolation: Why Predictive Feedback Fails in Diffusion Language Models</h3>
-                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Ishaan Bansal, Lavanya Nigam, Vidit Aggarwal</span>
-            </div>
-            <div class="meta-group">
-                <span class="badge badge-review">Under Review</span>
-                <span class="context-label">Workshop Paper</span>
-                <div class="links">
-                    <a href="https://drive.google.com/file/d/1AjV1E9daFqiZV53f2k8gXBFoycvoKmj7/view?usp=sharing" class="btn-preprint" target="_blank" rel="noopener noreferrer">Preprint</a>
-                    <a href="https://github.com/zer0-data/Soft-Masked-DLLMs" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
-                </div>
-            </div>
-        </div>
-        <ul class="details">
-            <li>Introduced spherical soft-masking for diffusion LLMs, replacing Euclidean LERP feedback with <strong>SLERP over Frechet means</strong> to mitigate embedding norm collapse during MDLM fine-tuning.</li>
-        </ul>
-        <div class="bibtex-toggle">
-            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
-            <pre class="bibtex-block">@article{sood2026lostinterpolation,
-  title={Lost in Interpolation: Why Predictive Feedback Fails in Diffusion Language Models},
-  author={Sood, Aryan and Bansal, Ishaan and Nigam, Lavanya and Aggarwal, Vidit},
-  journal={Workshop paper under review},
-  year={2026}
-}</pre>
-        </div>
-    </div>
-
-    <div class="item publication-item">
-        <div class="item-header">
-            <div class="title-group">
-                <h3 class="project-title">Don't Look Up (Every Token): Escaping Quadratic Complexity via Patterns and Algorithms</h3>
-                <span class="authors"><em>Authors:</em> <strong>Aryan Sood</strong>, Tanvi Sharma, Vansh Agrawal</span>
-            </div>
-            <div class="meta-group">
-                <span class="badge badge-accepted">ICLR 2026</span>
-                <div class="links">
-                    <a href="https://iclr-blogposts.github.io/2026/blog/2026/sparsity/" target="_blank" rel="noopener noreferrer">Blog</a>
-                </div>
-            </div>
-        </div>
-        <ul class="details">
-            <li>Surveyed sparsity-based efficiency methods for transformers, organizing them into a unified taxonomy distinguishing <strong>static structural patterns</strong> from <strong>dynamic, attention-driven</strong> approaches.</li>
-        </ul>
-        <div class="bibtex-toggle">
-            <button class="bibtex-btn" type="button"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</button>
-            <pre class="bibtex-block">@inproceedings{sood2026dontlookup,
-  author={Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},
-  title={Don't Look Up (Every Token): Escaping Quadratic Complexity via Geometric Patterns and Algorithms},
-  booktitle={ICLR Blogposts 2026},
-  year={2026},
-  url={https://iclr-blogposts.github.io/2026/blog/2026/sparsity/}
-}</pre>
-        </div>
+<section class="page-hero wrap">
+    <canvas class="attn-field" data-attn-field aria-hidden="true"></canvas>
+    <p class="section-kicker mono">( Research output )</p>
+    <h1 class="page-title"><span class="line"><span style="--i:0">Publications<em class="hero-dot">.</em></span></span></h1>
+    <div class="page-sub">
+        <p class="page-lede reveal-up" style="--i:1">Efficient attention, long-context inference, and diffusion language models. Every entry links to the paper and code, with copy-ready BibTeX.</p>
+        <dl class="page-stats mono reveal-up" style="--i:2">
+            <div><dt>Accepted</dt><dd>{{ accepted.size }}</dd></div>
+            <div><dt>Under review</dt><dd>{{ in_review.size }}</dd></div>
+            <div><dt>Profile</dt><dd><a class="text-link" href="https://scholar.google.com/citations?user=P66NEf0AAAAJ&hl=en&oi=sra" target="_blank" rel="noopener noreferrer">Scholar <span class="arr">↗</span></a></dd></div>
+        </dl>
     </div>
 </section>
+
+<section class="section wrap" id="papers">
+    <header class="sec-head sec-head-row">
+        <p class="section-kicker mono">( 01 &mdash; Papers &amp; blogposts )</p>
+        <div class="filters mono" role="toolbar" aria-label="Filter publications" data-filter-group="pubs">
+            <button class="filter active" type="button" data-filter="all">All</button>
+            <button class="filter" type="button" data-filter="conference">Conference</button>
+            <button class="filter" type="button" data-filter="workshop">Workshop</button>
+            <button class="filter" type="button" data-filter="blog">Blog</button>
+            <button class="filter" type="button" data-filter="preprint">Under review</button>
+        </div>
+    </header>
+    <div class="pub-list" data-filter-target="pubs">
+        {%- for pub in real_pubs %}
+        {%- capture n %}{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}{% endcapture %}
+        {% include pub-card.html pub=pub n=n %}
+        {%- endfor %}
+    </div>
+</section>
+
+{%- if upcoming.size > 0 %}
+<section class="section wrap" id="forthcoming">
+    <header class="sec-head">
+        <p class="section-kicker mono">( 02 &mdash; In the pipeline )</p>
+        <h2 class="sec-title" data-reveal>Forthcoming</h2>
+    </header>
+    <p class="sec-lede">Manuscripts in preparation. Titles, venues and preprints will appear here once they are public.</p>
+    <div class="pub-list">
+        {%- for pub in upcoming %}
+        {% include pub-card.html pub=pub n="—" %}
+        {%- endfor %}
+    </div>
+</section>
+{%- endif %}

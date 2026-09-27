@@ -1,0 +1,148 @@
+# Publications — edit this file to update the Publications page and the home page.
+#
+# Fields
+#   title        Paper title
+#   authors      Comma-separated; "Aryan Sood" is bolded automatically
+#   note         Optional small line under the authors (e.g. equal-contribution marks)
+#   venue        Short label, e.g. "ICLR 2026"
+#   venue_detail Optional longer venue line, e.g. "AdaptFM Workshop, ICML 2026"
+#   status       accepted | review | preprint | upcoming
+#   type         conference | workshop | blog | preprint   (drives the filter chips)
+#   year         Year shown on the card
+#   highlight    true marks a headline paper (accent badge, listed first)
+#   summary      One or two sentences (HTML allowed)
+#   links        List of { label, url }
+#   bibtex       Optional BibTeX block (use the | literal style). Use the official
+#                arXiv export (arxiv.org/bibtex/<id>) where one exists.
+#   placeholder  true renders a "forthcoming" card. To publish a placeholder,
+#                fill in the fields and delete the placeholder line.
+
+# ---------------------------------------------------------------- accepted
+- title: "Dropping the Anchor: Statistical Context Summarization for Distributed Systems via Pulsar Attention"
+  authors: "Aryan Sood, Shantanu Acharya, Gaurav Kumar Nayak"
+  venue: "EMNLP 2026 Findings"
+  venue_detail: "Findings of EMNLP 2026"
+  status: accepted
+  type: conference
+  year: 2026
+  highlight: true
+  summary: "Developed Pulsar Attention for distributed long-context inference, replacing static anchor duplication with content-aware statistical summaries and reporting up to <strong>4.7%</strong> accuracy gain over dense attention, <strong>6.1%</strong> over Star Attention, and <strong>3.3x</strong> lower Phase-1 FLOPs. Also accepted at the <strong>AdaptFM Workshop</strong> on Resource-Adaptive Foundation Model Inference, ICML 2026."
+  links:
+    - label: arXiv
+      url: "https://arxiv.org/abs/2607.20457"
+    - label: GitHub
+      url: "https://github.com/zer0-data/Statistical-Cross-Attention"
+  bibtex: |-
+    @misc{sood2026droppinganchorstatisticalcontext,
+          title={Dropping the Anchor: Statistical Context Summarization for Distributed Systems via Pulsar Attention},
+          author={Aryan Sood and Shantanu Acharya and Gaurav Kumar Nayak},
+          year={2026},
+          eprint={2607.20457},
+          archivePrefix={arXiv},
+          primaryClass={cs.CL},
+          url={https://arxiv.org/abs/2607.20457},
+    }
+
+- title: "More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression"
+  authors: "Aryan Sood, Tanvi Sharma, Vansh Agrawal"
+  venue: "ICLR 2026"
+  venue_detail: "ICBINB Workshop (I Can't Believe It's Not Better), ICLR 2026"
+  status: accepted
+  type: workshop
+  year: 2026
+  summary: "Introduced LASER-KV, a KV-cache compression method achieving up to <strong>10% higher accuracy at 128k context</strong> over greedy pruning baselines via block-wise accumulation and <strong>Exact-LSH sampling</strong>."
+  links:
+    - label: arXiv
+      url: "https://arxiv.org/abs/2602.02199"
+    - label: GitHub
+      url: "https://github.com/zer0-data/LASER-KV"
+  bibtex: |-
+    @misc{sood2026quickglanceovercominggreedy,
+          title={More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression},
+          author={Aryan Sood and Tanvi Sharma and Vansh Agrawal},
+          year={2026},
+          eprint={2602.02199},
+          archivePrefix={arXiv},
+          primaryClass={cs.AI},
+          url={https://arxiv.org/abs/2602.02199},
+    }
+
+- title: "Lost in Interpolation: Why Predictive Feedback Fails in Diffusion Language Models"
+  authors: "Lavanya Nigam, Ishaan Bansal, Aryan Sood, Vidit Aggarwal, Gaurav Kumar Nayak"
+  venue: "COLM 2026"
+  venue_detail: "Non-Autoregressive Language Models Workshop, COLM 2026"
+  status: accepted
+  type: workshop
+  year: 2026
+  summary: "Introduced spherical soft-masking for diffusion LLMs, replacing Euclidean LERP feedback with <strong>SLERP over Fréchet means</strong> to mitigate embedding norm collapse during MDLM fine-tuning."
+  links:
+    - label: arXiv
+      url: "https://arxiv.org/abs/2608.06529"
+    - label: GitHub
+      url: "https://github.com/zer0-data/Soft-Masked-DLLMs"
+  bibtex: |-
+    @misc{nigam2026lostinterpolationpredictivefeedback,
+          title={Lost in Interpolation: Why Predictive Feedback Fails in Diffusion Language Models},
+          author={Lavanya Nigam and Ishaan Bansal and Aryan Sood and Vidit Aggarwal and Gaurav Kumar Nayak},
+          year={2026},
+          eprint={2608.06529},
+          archivePrefix={arXiv},
+          primaryClass={cs.CL},
+          url={https://arxiv.org/abs/2608.06529},
+    }
+
+- title: "Don't Look Up (Every Token): Escaping Quadratic Complexity via Patterns and Algorithms"
+  authors: "Aryan Sood, Tanvi Sharma, Vansh Agrawal"
+  venue: "ICLR 2026"
+  venue_detail: "ICLR 2026 Blogpost Track"
+  status: accepted
+  type: blog
+  year: 2026
+  summary: "Surveyed sparsity-based efficiency methods for transformers, organizing them into a unified taxonomy distinguishing <strong>static structural patterns</strong> from <strong>dynamic, attention-driven</strong> approaches."
+  links:
+    - label: Blog
+      url: "https://iclr-blogposts.github.io/2026/blog/2026/sparsity/"
+  bibtex: |-
+    @inproceedings{sood2026dontlookup,
+      author={Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},
+      title={Don't Look Up (Every Token): Escaping Quadratic Complexity via Geometric Patterns and Algorithms},
+      booktitle={ICLR Blogposts 2026},
+      year={2026},
+      url={https://iclr-blogposts.github.io/2026/blog/2026/sparsity/}
+    }
+
+# ---------------------------------------------------------------- under review
+# Preprints hosted on Drive have no official BibTeX yet; add one once they are on arXiv.
+- title: "BRIEF: Bounded-Context Regeneration of Long Documents with Verifiable Structural Topology"
+  authors: "Aryan Sood, Soham Bhattacharjee, Pratinav Seth"
+  venue: "Under review"
+  status: review
+  type: preprint
+  year: 2026
+  summary: "Regenerates long legal and financial documents one clause at a time from short structural briefs (number path, required terms, cross-references), never showing the generator source prose. Keeps cross-reference fidelity near <strong>0.98</strong> with a near-constant <strong>~86-token</strong> maximum prompt, and improves verifiable section and cross-reference topology over one-pass generation on CUAD and EDGAR EX-10."
+  links:
+    - label: Preprint
+      url: "https://drive.google.com/file/d/1eSaDHXbvRkJ3DKn1NDAqOoqPP1zRja8h/view?usp=sharing"
+
+- title: "Are You Sure You're Sure? Two Confounds in a Sycophancy Benchmark"
+  authors: "Atharv Gupta*, Akshat Jindal*, Lavanya Nigam†, Aryan Sood†"
+  note: "* equal contribution (first authors) · † equal contribution (second authors)"
+  venue: "Under review"
+  status: review
+  type: preprint
+  year: 2026
+  summary: "Audits SycEval and shows two template confounds: naming a target answer raises the follow rate by <strong>14.1–49.5 pp</strong> and, once controlled, reverses the reported timing effect on three of five model conditions; relocating the output-format instruction flips its effect across models. Closes with three checks benchmark authors can run on their own templates."
+  links:
+    - label: Preprint
+      url: "https://drive.google.com/file/d/1gmTjrKBd72GV1PG08rQasb4ow1GRqPfX/view?usp=sharing"
+
+- title: "Underscoring the Problem: Why Softpick Fails at Initialization"
+  authors: "Aryan Sood, Jaikaran Singh, Ishaan Bansal"
+  venue: "Under review"
+  status: review
+  type: preprint
+  year: 2026
+  summary: "Reframes softpick's failure at scale as a normalization problem by splitting its denominator into forward and backward roles. Traces the failure to initialization (rows with zero positive mass and gradient norms above 10<sup>12</sup>) and identifies a <strong>stop-gradient operator</strong> that trains from scratch and, at 230M parameters, matches softpick on quantization with fewer dead heads and better passkey retrieval."
+  links:
+    - label: Preprint
+      url: "https://drive.google.com/file/d/1HYkrKPrnTUWpVX5pKjENDGaaWYxE4C61/view?usp=sharing"

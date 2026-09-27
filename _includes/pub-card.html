@@ -1,0 +1,39 @@
+{%- comment -%}
+  Full publication entry (Publications page).
+  include params: pub, n (display index)
+{%- endcomment -%}
+{%- assign pub = include.pub -%}
+<article class="pub{% if pub.placeholder %} is-placeholder{% endif %}{% if pub.highlight %} is-highlight{% endif %}" data-type="{{ pub.type }}" data-reveal>
+    <div class="pub-index mono">{{ include.n }}</div>
+    <div class="pub-body">
+        <h3 class="pub-title">{{ pub.title }}</h3>
+        <p class="pub-authors">{{ pub.authors | replace: "Aryan Sood", "<strong>Aryan Sood</strong>" }}</p>
+        {%- if pub.note %}<p class="pub-note mono">{{ pub.note }}</p>{% endif %}
+        {%- if pub.venue_detail %}<p class="pub-venue">{{ pub.venue_detail }}</p>{% endif %}
+        {%- if pub.placeholder %}
+        <div class="skeleton" aria-hidden="true"><span></span><span></span></div>
+        <p class="pub-summary">{{ pub.summary }}</p>
+        {%- else %}
+        <p class="pub-summary">{{ pub.summary }}</p>
+        <div class="pub-actions">
+            {%- for link in pub.links %}
+            <a class="text-link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span class="arr" aria-hidden="true">↗</span></a>
+            {%- endfor %}
+            {%- if pub.bibtex %}
+            <button class="text-link bibtex-btn" type="button">BibTeX <span class="arr" aria-hidden="true">+</span></button>
+            {%- endif %}
+        </div>
+        {%- if pub.bibtex %}
+        <div class="bibtex-panel" hidden>
+            <button class="copy-btn mono" type="button">Copy</button>
+            <pre class="bibtex-block">{{ pub.bibtex | xml_escape }}</pre>
+        </div>
+        {%- endif %}
+        {%- endif %}
+    </div>
+    <div class="pub-meta">
+        {%- if pub.highlight %}<span class="tag tag-solid">★ Highlight</span>{% endif %}
+        <span class="tag{% if pub.status == 'accepted' %} tag-accent{% endif %}">{{ pub.venue }}</span>
+        <span class="mono muted">{{ pub.year }}{% unless pub.placeholder %} · {{ pub.type }}{% endunless %}</span>
+    </div>
+</article>

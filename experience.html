@@ -1,0 +1,36 @@
+---
+layout: default
+title: Experience
+slug: experience
+description: Research and engineering internships of Aryan Sood across long-context LLMs, distributed inference, and computer vision.
+---
+{%- assign real_jobs = site.data.experience | where_exp: "j", "j.placeholder != true" -%}
+{%- assign upcoming = site.data.experience | where: "placeholder", true -%}
+
+<section class="page-hero wrap">
+    <canvas class="attn-field" data-attn-field aria-hidden="true"></canvas>
+    <p class="section-kicker mono">( Internships )</p>
+    <h1 class="page-title"><span class="line"><span style="--i:0">Experience<em class="hero-dot">.</em></span></span></h1>
+    <div class="page-sub">
+        <p class="page-lede reveal-up" style="--i:1">Research and engineering roles spanning long-context LLMs, distributed inference, and computer vision.</p>
+        <dl class="page-stats mono reveal-up" style="--i:2">
+            <div><dt>Internships</dt><dd>{{ real_jobs.size }}</dd></div>
+            <div><dt>Resume</dt><dd><a class="text-link" href="{{ '/assets/resume.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">PDF <span class="arr">↗</span></a></dd></div>
+        </dl>
+    </div>
+</section>
+
+<section class="section wrap" id="timeline">
+    <header class="sec-head">
+        <p class="section-kicker mono">( 01 &mdash; Timeline )</p>
+        <h2 class="sec-title" data-reveal>Where I&rsquo;ve worked</h2>
+    </header>
+    <div class="timeline-wrap" data-timeline>
+        <span class="tl-rail" aria-hidden="true"><span class="tl-fill"></span></span>
+        <ol class="timeline">
+            {%- for job in site.data.experience %}
+            {% include exp-item.html job=job %}
+            {%- endfor %}
+        </ol>
+    </div>
+</section>
