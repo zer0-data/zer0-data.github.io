@@ -19,6 +19,9 @@ collections:
     output: true
     permalink: /blogs/:name/
 
+# Publish posts dated "today" even when GitHub builds in UTC before the date rolls over.
+future: true
+
 # Primary navigation (order matters)
 nav:
   - title: Home
