@@ -9,6 +9,15 @@ description: >- # this means to ignore newlines until "baseurl:"
 url: "https://zer0-data.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax   # emits \( \) and \[ \] delimiters, rendered client-side by KaTeX
+
+# Paper summaries / blog posts live in _blogs/ and render at /blogs/<name>/
+collections:
+  blogs:
+    output: true
+    permalink: /blogs/:name/
 
 # Primary navigation (order matters)
 nav:
@@ -20,6 +29,8 @@ nav:
     url: /experience.html
   - title: Projects
     url: /projects.html
+  - title: Blogs
+    url: /blogs.html
   - title: About
     url: /about.html
 

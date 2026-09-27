@@ -32,9 +32,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {%- if page.collection == "blogs" %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    {%- endif %}
 </head>
 
-<body class="page-{{ page.slug | default: 'default' }}">
+<body class="page-{{ page.slug | default: page.collection | default: 'default' }}">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- page transition curtain -->
@@ -53,7 +58,10 @@
             <ul class="nav-links" id="nav-links">
                 {%- for item in site.nav %}
                 <li>
-                    <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="active" aria-current="page"{% endif %}>
+                    {%- assign is_active = false %}
+                    {%- if page.url == item.url %}{% assign is_active = true %}{% endif %}
+                    {%- if page.collection == "blogs" and item.url == "/blogs.html" %}{% assign is_active = true %}{% endif %}
+                    <a href="{{ item.url | relative_url }}"{% if is_active %} class="active" aria-current="{% if page.url == item.url %}page{% else %}true{% endif %}"{% endif %}>
                         <span class="mono nav-n">0{{ forloop.index }}</span>{{ item.title }}
                     </a>
                 </li>

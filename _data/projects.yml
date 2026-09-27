@@ -14,6 +14,23 @@
 #   bullets       Details for the Projects page (HTML allowed)
 #   github        Optional repository URL
 
+- title: "Long-Context Adversarial Eval Harness"
+  dates: "July 2026"
+  year: "2026"
+  category: research
+  kicker: "LLM Evaluation"
+  featured: true
+  metric: "16K"
+  metric_label: "context sweeps · 5 adversarial families"
+  summary: "Source-grounded long-context fact-QA harness with length and position sweeps, distractor and multi-hop cases, exact-span hallucination checks, and calibration reports."
+  stack: "vLLM · Modal · uv · pytest"
+  github: "https://github.com/zer0-data/adversarial-eval-harness"
+  bullets:
+    - "Built a <code>uv</code>-based evaluation harness for source-grounded long-context fact QA, shaped after RULER, BABILong, and LongBench: configurable 2K/8K/16K length buckets and early/middle/late evidence positions."
+    - "Hand-verified 60-case synthetic dataset across five adversarial families (single fact, multi-key distractor, multi-value, multi-hop, misleading fact pair), with an audit log checking every answer against an exact source span."
+    - "Forced strict JSON with cited evidence spans so hallucinations are auditable; reports accuracy, schema validity, evidence-span presence, and calibration (ECE with reliability diagrams) per family and bucket."
+    - "Ran GPU inference on Modal with vLLM and added a regression command that fails CI when a previously passing case breaks; a 0.5B Qwen2.5 model scored <strong>0.167</strong> accuracy at up to 16K, exposing sharp long-context degradation."
+
 - title: "ParkWatch"
   dates: "June 2026"
   year: "2026"

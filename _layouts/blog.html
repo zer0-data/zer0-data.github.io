@@ -1,0 +1,62 @@
+---
+layout: default
+---
+{%- assign posts = site.blogs | sort: "date" | reverse -%}
+{%- for p in posts -%}
+  {%- if p.url == page.url -%}
+    {%- assign idx = forloop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign newer_i = idx | minus: 1 -%}
+{%- assign older_i = idx | plus: 1 -%}
+{%- assign words = content | number_of_words -%}
+{%- assign minutes = words | divided_by: 200.0 | ceil -%}
+
+<div class="read-progress" aria-hidden="true"></div>
+
+<article class="post">
+    <header class="post-hero wrap">
+        <a class="text-link post-back mono" href="{{ '/blogs.html' | relative_url }}"><span class="arr" aria-hidden="true">←</span> All blogs</a>
+        <p class="section-kicker mono">( Paper summary &middot; {{ page.venue }} )</p>
+        <h1 class="post-title"><span class="line"><span style="--i:0">{{ page.title }}</span></span></h1>
+
+        <dl class="post-meta reveal-up" style="--i:1">
+            <div class="pm-wide"><dt class="mono">Paper by</dt><dd>{{ page.paper_authors }}</dd></div>
+            <div><dt class="mono">Written</dt><dd>{{ page.date | date: "%b %-d, %Y" }}</dd></div>
+            <div><dt class="mono">Reading</dt><dd>{{ minutes }} min</dd></div>
+            <div><dt class="mono">Topics</dt><dd>{{ page.tags | join: " · " }}</dd></div>
+        </dl>
+
+        <div class="post-links reveal-up" style="--i:2">
+            <a class="pill-btn pill-solid" href="{{ page.paper_url }}" target="_blank" rel="noopener noreferrer" data-magnetic>Read the paper <span aria-hidden="true">↗</span></a>
+            {%- if page.source_url %}
+            <a class="pill-btn" href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer" data-magnetic>Also on {{ page.source_name }} <span aria-hidden="true">↗</span></a>
+            {%- endif %}
+        </div>
+    </header>
+
+    <div class="post-grid wrap">
+        <aside class="toc" aria-label="Contents">
+            <p class="toc-label mono">Contents</p>
+            <ol class="toc-list" data-toc></ol>
+        </aside>
+        <div class="prose" data-prose>
+            {{ content }}
+        </div>
+    </div>
+
+    <nav class="post-nav wrap" aria-label="More posts">
+        {%- if newer_i >= 0 %}{% assign newer = posts[newer_i] %}
+        <a class="post-nav-link" href="{{ newer.url | relative_url }}">
+            <span class="mono muted">← Newer</span>
+            <span class="pn-title">{{ newer.title }}</span>
+        </a>
+        {%- else %}<span></span>{% endif %}
+        {%- if older_i < posts.size %}{% assign older = posts[older_i] %}
+        <a class="post-nav-link pn-older" href="{{ older.url | relative_url }}">
+            <span class="mono muted">Older →</span>
+            <span class="pn-title">{{ older.title }}</span>
+        </a>
+        {%- endif %}
+    </nav>
+</article>

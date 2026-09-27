@@ -129,6 +129,7 @@ slug: home
         {%- endif %}
     </div>
     <div class="preview" aria-hidden="true">
+        <img class="preview-img" alt="">
         <span class="preview-venue mono"></span>
         <p class="preview-text"></p>
     </div>
@@ -175,10 +176,26 @@ slug: home
     </div>
 </section>
 
+<!-- ================================================================ WRITING -->
+{%- assign latest_posts = site.blogs | sort: "date" | reverse -%}
+<section class="section wrap" id="writing">
+    <header class="sec-head">
+        <p class="section-kicker mono">( 06 &mdash; Writing )</p>
+        <h2 class="sec-title" data-reveal>Blogs</h2>
+        <a class="text-link sec-link" href="{{ '/blogs.html' | relative_url }}">All {{ latest_posts.size }} posts <span class="arr" aria-hidden="true">→</span></a>
+    </header>
+    <div class="pub-rows" data-preview-list>
+        {%- for post in latest_posts limit: 3 %}
+        {%- capture n %}0{{ forloop.index }}{% endcapture %}
+        {% include blog-row.html post=post n=n %}
+        {%- endfor %}
+    </div>
+</section>
+
 <!-- ================================================================ EDUCATION & AWARDS -->
 <section class="section wrap" id="education">
     <header class="sec-head">
-        <p class="section-kicker mono">( 06 &mdash; Education &amp; Recognition )</p>
+        <p class="section-kicker mono">( 07 &mdash; Education &amp; Recognition )</p>
         <h2 class="sec-title" data-reveal>Background</h2>
     </header>
 

@@ -1,0 +1,58 @@
+---
+layout: default
+title: Blogs
+slug: blogs
+description: Paper summaries and blog posts by Aryan Sood on attention, KV caches, pruning, and efficient transformers.
+---
+{%- assign posts = site.blogs | sort: "date" | reverse -%}
+{%- assign vlg_posts = posts | where: "source_name", "VLG papers_we_read" -%}
+
+<section class="page-hero wrap">
+    <canvas class="attn-field" data-attn-field aria-hidden="true"></canvas>
+    <p class="section-kicker mono">( Writing )</p>
+    <h1 class="page-title"><span class="line"><span style="--i:0">Blogs<em class="hero-dot">.</em></span></span></h1>
+    <div class="page-sub">
+        <p class="page-lede reveal-up" style="--i:1">Paper summaries on attention, KV caches, pruning, and how transformers carry state, written to explain the idea first and the equations second.</p>
+        <dl class="page-stats mono reveal-up" style="--i:2">
+            <div><dt>Posts</dt><dd>{{ posts.size }}</dd></div>
+            <div><dt>On VLG</dt><dd>{{ vlg_posts.size }}</dd></div>
+            <div><dt>Series</dt><dd><a class="text-link" href="https://github.com/vlgiitr/papers_we_read" target="_blank" rel="noopener noreferrer">papers_we_read <span class="arr">↗</span></a></dd></div>
+        </dl>
+    </div>
+</section>
+
+<section class="section wrap" id="posts">
+    <header class="sec-head">
+        <p class="section-kicker mono">( 01 &mdash; Paper summaries )</p>
+        <h2 class="sec-title" data-reveal>Latest</h2>
+    </header>
+    <div class="pub-rows" data-preview-list>
+        {%- for post in posts %}
+        {%- capture n %}{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}{% endcapture %}
+        {% include blog-row.html post=post n=n %}
+        {%- endfor %}
+    </div>
+    <div class="preview" aria-hidden="true">
+        <img class="preview-img" alt="">
+        <span class="preview-venue mono"></span>
+        <p class="preview-text"></p>
+    </div>
+</section>
+
+<section class="section wrap" id="elsewhere">
+    <header class="sec-head">
+        <p class="section-kicker mono">( 02 &mdash; Elsewhere )</p>
+        <h2 class="sec-title" data-reveal>Published blogposts</h2>
+    </header>
+    <div class="pub-rows">
+        <a class="pub-row" href="https://iclr-blogposts.github.io/2026/blog/2026/sparsity/" target="_blank" rel="noopener noreferrer" data-reveal>
+            <span class="row-n mono">↗</span>
+            <span class="row-main">
+                <span class="row-title">Don&rsquo;t Look Up (Every Token): Escaping Quadratic Complexity via Patterns and Algorithms</span>
+                <span class="row-tags mono">ICLR 2026 Blogpost Track / with Tanvi Sharma &amp; Vansh Agrawal</span>
+            </span>
+            <span class="row-venue mono">ICLR 2026</span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+        </a>
+    </div>
+</section>

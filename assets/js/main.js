@@ -222,16 +222,58 @@
     var prev = { x: 0, y: 0, on: false };
     if (preview && finePointer) {
         var pv = preview.querySelector('.preview-venue'), pt = preview.querySelector('.preview-text');
+        var pi = preview.querySelector('.preview-img');
         document.querySelectorAll('.pub-row[data-preview-text]').forEach(function (row) {
             row.addEventListener('pointerenter', function () {
                 pv.textContent = row.getAttribute('data-preview-venue');
                 pt.textContent = row.getAttribute('data-preview-text');
+                if (pi) {
+                    var src = row.getAttribute('data-preview-img');
+                    preview.classList.toggle('has-img', !!src);
+                    if (src) pi.src = src;
+                }
                 if (!prev.on) { prev.x = mouse.x; prev.y = mouse.y; }
                 prev.on = true; preview.classList.add('show');
             });
             row.addEventListener('pointerleave', function () { prev.on = false; preview.classList.remove('show'); });
         });
     }
+
+    // ================================================================ blog posts: math, contents, progress
+    var prose = document.querySelector('[data-prose]');
+    var tocItems = [];
+    if (prose) {
+        // KaTeX (loaded with defer on post pages only); kramdown emits \( \) and \[ \] delimiters.
+        var renderMath = function () {
+            if (!window.renderMathInElement) return false;
+            window.renderMathInElement(prose, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '\\[', right: '\\]', display: true },
+                    { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+            });
+            return true;
+        };
+        if (!renderMath()) window.addEventListener('load', renderMath);
+
+        // Contents list from the post's headings, with the current section highlighted.
+        var toc = document.querySelector('[data-toc]');
+        var heads = prose.querySelectorAll('h2, h3');
+        heads.forEach(function (h, i) {
+            if (!h.id) h.id = 's-' + (i + 1) + '-' + h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            if (!toc) return;
+            var li = document.createElement('li');
+            li.className = h.tagName === 'H3' ? 'toc-sub' : '';
+            var a = document.createElement('a');
+            a.href = '#' + h.id; a.textContent = h.textContent;
+            li.appendChild(a); toc.appendChild(li);
+            tocItems.push({ h: h, a: a });
+        });
+        if (toc && !tocItems.length) toc.closest('.toc').style.display = 'none';
+    }
+    var readBar = document.querySelector('.read-progress');
 
     // ================================================================ scroll-driven effects
     var nav = document.getElementById('nav');
@@ -303,6 +345,14 @@
             var idx = Math.min(n, Math.round(hp * (n - 1)) + 1);
             if (hsCount) hsCount.textContent = (idx < 10 ? '0' : '') + idx;
             if (hsBar) hsBar.parentElement.parentElement.style.setProperty('--hs', hp.toFixed(3));
+        }
+        // reading progress + active contents entry on blog posts
+        if (prose) {
+            var pr = prose.getBoundingClientRect();
+            if (readBar) readBar.style.transform = 'scaleX(' + clamp((vh * 0.3 - pr.top) / pr.height, 0, 1).toFixed(4) + ')';
+            var current = null;
+            tocItems.forEach(function (t) { if (t.h.getBoundingClientRect().top < vh * 0.3) current = t; });
+            tocItems.forEach(function (t) { t.a.classList.toggle('active', t === current); });
         }
         lastY = y;
     }

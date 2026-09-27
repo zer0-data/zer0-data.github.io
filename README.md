@@ -18,6 +18,18 @@ All content lives in YAML files under `_data/`, so you don't need to touch HTML 
 
 Each file has a comment block at the top that explains its fields.
 
+### Adding a blog post
+
+Posts live in `_blogs/` as Markdown and render at `/blogs/<file-name>/`. Copy an existing post and
+edit its front matter (`title`, `paper_authors`, `venue`, `date`, `tags`, `summary`, `paper_url`,
+optional `source_url`/`source_name` and `cover`). Keep the body wrapped in `{% raw %}…{% endraw %}`
+so LaTeX braces never clash with Jekyll's templating.
+
+- Math: write `$$...$$` (inline or on its own line for display). Single `$` is not math in kramdown.
+- Images: put them in `assets/blogs/` and use
+  `<figure class="fig" style="--w: 500px"><img src="/assets/blogs/x.png" alt="..."></figure>`.
+- `##` headings become the numbered sections and the contents sidebar.
+
 ### Filling in a placeholder
 
 Publications and experience entries marked `placeholder: true` render as "Forthcoming" cards.

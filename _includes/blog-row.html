@@ -1,0 +1,18 @@
+{%- comment -%}
+  Blog post row with hover preview. include params: post, n
+{%- endcomment -%}
+{%- assign post = include.post -%}
+{%- assign minutes = post.content | number_of_words | divided_by: 200.0 | ceil -%}
+<a class="pub-row blog-row" href="{{ post.url | relative_url }}"
+   data-preview-venue="{{ post.venue }} · {{ minutes }} min read"
+   data-preview-text="{{ post.summary | escape }}"
+   {%- if post.cover %} data-preview-img="{{ post.cover | relative_url }}"{% endif %} data-cursor="Read" data-reveal>
+    <span class="row-n mono">{{ include.n }}</span>
+    <span class="row-main">
+        <span class="row-title">{{ post.title }}</span>
+        <span class="row-tags mono">{{ post.tags | join: " / " }}</span>
+    </span>
+    <span class="row-venue mono">{{ post.date | date: "%b %Y" }}</span>
+    <span class="row-arrow" aria-hidden="true">→</span>
+    <span class="row-summary">{{ post.summary }}</span>
+</a>
