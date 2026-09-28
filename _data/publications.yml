@@ -34,6 +34,8 @@
   links:
     - label: arXiv
       url: "https://arxiv.org/abs/2607.20457"
+    - label: Project page
+      url: "https://zer0-data.github.io/pulsarpage/"
     - label: GitHub
       url: "https://github.com/zer0-data/Statistical-Cross-Attention"
   bibtex: |-
