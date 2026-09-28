@@ -129,7 +129,7 @@
     </footer>
 
     <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
-    {%- if page.slug == "publications" or page.slug == "home" %}
+    {%- if page.slug == "publications" or page.slug == "home" or page.collection == "blogs" %}
     <script src="{{ '/assets/js/demos.js' | relative_url }}" defer></script>
     {%- endif %}
 </body>

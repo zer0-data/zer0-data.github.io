@@ -48,6 +48,11 @@ The most important idea in the paper is the difference between **looping** and *
 - **Looped transformer.** You unroll in *depth only*. This just gives you a deeper feedforward network with shared weights. To track a state update, the new state has to sit one layer *deeper* than the old one. So you keep climbing the stack. Eventually you hit the ceiling again. The depth limit is not solved.
 - **Recirculation.** You unroll in *depth and step*. Now the same layer can hold both the old state and the new state. State can stay in place. It can persist across many input steps. This is exactly what a recurrent network does. In fact, if you let the number of iterations grow without limit, recirculation turns into a true recurrent network.
 
+<figure class="demo" data-demo="recirc">
+  <p class="demo-label mono"><span class="live-dot" aria-hidden="true"></span>Interactive explainer</p>
+  <figcaption>Rows are layers, columns are words. Looping sends a deep layer back to a shallow one within the same word (depth-only recurrence). Recirculation mixes a fraction α of the deep state into a shallow layer at the next word, so the resolved meaning of "bank" can reach the layers that start the next step.</figcaption>
+</figure>
+
 There is a real cost to this. Because state updates are now truly sequential, recirculation **cannot be run in parallel during prefill**. Prefill is the phase where the model reads the prompt. During normal word-by-word *generation* the cost is tiny. Two stacks run side by side, and modern hardware handles that well. But a long prompt has to be read one token at a time, which can be slow.
 
 For **adaptive recirculation**, they keep the model frozen. They fix the source and destination layers. They then learn only α and β. They test six versions in total. These range from fixed values, to learned single numbers, to learned per-feature vectors, and finally to full fine-tuning. The winner is a small helper network. It looks at each token's source and destination embeddings. It then outputs a custom set of mixing weights for that specific token. In short, the model gets to decide how much to recirculate, token by token and feature by feature.

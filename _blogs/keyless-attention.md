@@ -21,6 +21,11 @@ That is the whole idea of **Keyless Attention**. It deletes the key projection c
 
 There is a neat human analogy behind this. When you recall something from memory, you do not keep two separate copies of every past thought, one copy for finding it and another for reading it. You search your memories directly. Standard attention keeps two copies of each past token, a key copy and a value copy. That looks wasteful, and this paper argues it is.
 
+<figure class="demo" data-demo="keyless">
+  <p class="demo-label mono"><span class="live-dot" aria-hidden="true"></span>Interactive explainer</p>
+  <figcaption>Standard attention caches a key and a value for every past token; keyless attention scores the query directly against the cached values, so only values are stored. Cache sizes scale the paper's example (0.236 GB vs 0.118 GB at 8,192 tokens).</figcaption>
+</figure>
+
 The surprising part is that removing keys does not make the model worse. Across five models the keyless version matches or beats the standard version on perplexity in 4 out of 5, and it does so while using half the cache.
 
 ## Contributions

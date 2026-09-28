@@ -38,6 +38,11 @@ Here's how it works:
 
 This allows the model to dynamically control how much mixing happens at each layer for each token, preventing the representations from becoming a blurry mess.
 
+<figure class="demo" data-demo="attnsink">
+  <p class="demo-label mono"><span class="live-dot" aria-hidden="true"></span>Interactive explainer</p>
+  <figcaption>Each layer pulls every token toward the average, and the colours blur into brown. Send attention to <code>&lt;bos&gt;</code>, whose value is close to zero, and that share of the update does nothing, so tokens stay distinct deeper into the stack. A toy mixing model; the paper figures are quoted in the readout.</figcaption>
+</figure>
+
 <figure class="fig" style="--w: 250px">
   <img src="/assets/blogs/attentionsink_2.png" alt="Diagram of attention heads routing to the bos sink to skip an update" loading="lazy">
 </figure>

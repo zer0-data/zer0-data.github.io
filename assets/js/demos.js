@@ -856,6 +856,357 @@
         var api = animate(fig, S, draw);
     };
 
+    // ================================================================
+    // BLOG · Attention sinks: repeated mixing blurs tokens; a sink is the off-switch
+    // ================================================================
+    DEMOS.attnsink = function (fig) {
+        var ui = scaffold(fig);
+        var s = 0, L = 24, MU = 0.11, t0 = 0, clock = 0;
+        range(ui.controls, 'attention to <bos>', 0, 0.95, 0.05, s, function (v) { return Math.round(v * 100) + '%'; }, function (v) { s = v; });
+        var replay = h('button', 'seg-btn', h('div', 'seg', ui.controls), 'Replay layers');
+        replay.type = 'button';
+        replay.addEventListener('click', function () { t0 = clock; });
+        var S = Surface(ui.stage, function (w) { return w < 560 ? 420 : 290; });
+
+        var N = 9, R = rng(21), toks = [];
+        for (var i = 0; i < N; i++) {
+            var a = (i / N) * Math.PI * 2 + R() * 0.4, r = 0.55 + R() * 0.4;
+            var hue = (i / N) * 360, c = hsl(hue, 70, 55);
+            toks.push({ x: Math.cos(a) * r, y: Math.sin(a) * r, c: c });
+        }
+        function hsl(hh, ss, ll) {
+            ss /= 100; ll /= 100;
+            var k = function (n) { return (n + hh / 30) % 12; }, A = ss * Math.min(ll, 1 - ll);
+            var f = function (n) { return ll - A * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1))); };
+            return [f(0) * 255, f(8) * 255, f(4) * 255];
+        }
+        var mean = { x: 0, y: 0, c: [0, 0, 0] };
+        toks.forEach(function (tk) { mean.x += tk.x / N; mean.y += tk.y / N; for (var j = 0; j < 3; j++) mean.c[j] += tk.c[j] / N; });
+        // Each layer mixes token i toward the average by MU; attention sent to <bos> (value ≈ 0) adds ~nothing.
+        function spread(l, sink) { return Math.pow(1 - MU * (1 - sink), l); }
+
+        function draw(t) {
+            clock = t;
+            var ctx = S.ctx, W = S.w, H = S.h, narrow = W < 560;
+            ctx.clearRect(0, 0, W, H);
+            var l = reduce ? 12 : Math.min(L, ((t - t0) * 3.2) % (L + 10));
+            var f = spread(l, s);
+            var cw = narrow ? W : W * 0.5, cx = cw / 2 + 24, cy = narrow ? 112 : H / 2 - 10, rad = narrow ? Math.min(cw * 0.28, 78) : Math.min(cw * 0.3, 92);
+            ctx.textBaseline = 'middle'; ctx.font = font(10); ctx.fillStyle = P.ink3;
+            ctx.fillText('TOKEN REPRESENTATIONS · LAYER ' + Math.floor(l) + ' / ' + L, 0, 10);
+
+            // the <bos> sink
+            var bx = cx - rad - 44, by = cy;
+            if (s > 0) {
+                toks.forEach(function (tk) {
+                    var x = cx + (mean.x + f * (tk.x - mean.x)) * rad, y = cy + (mean.y + f * (tk.y - mean.y)) * rad;
+                    ctx.strokeStyle = P.ink3; ctx.globalAlpha = s * 0.6; ctx.lineWidth = 1;
+                    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(bx, by); ctx.stroke();
+                });
+                ctx.globalAlpha = 1;
+            }
+            ctx.fillStyle = P.bg; ctx.strokeStyle = P.ink3; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(bx, by, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = P.ink3; ctx.font = font(9); ctx.textAlign = 'center';
+            ctx.fillText('<bos>  value ≈ 0', bx, by + 18); ctx.textAlign = 'left';
+
+            toks.forEach(function (tk) {
+                var x = cx + (mean.x + f * (tk.x - mean.x)) * rad, y = cy + (mean.y + f * (tk.y - mean.y)) * rad;
+                var c = [0, 1, 2].map(function (j) { return Math.round(mean.c[j] + f * (tk.c[j] - mean.c[j])); });
+                ctx.fillStyle = 'rgb(' + c.join(',') + ')';
+                ctx.beginPath(); ctx.arc(x, y, 11, 0, Math.PI * 2); ctx.fill();
+            });
+
+            // distinctness vs depth, with and without the sink
+            var gx = narrow ? 34 : cw + 40, gy = narrow ? cy + rad + 70 : 34, gw = narrow ? W - gx - 10 : W - gx - 10, gh = narrow ? H - gy - 30 : H - gy - 40;
+            ctx.strokeStyle = P.rule; ctx.lineWidth = 1; ctx.strokeRect(gx, gy, gw, gh);
+            ctx.fillStyle = P.ink3; ctx.font = font(9);
+            ctx.fillText('how distinct tokens stay (spread) vs layer', gx, gy - 12);
+            [[0, P.warn, 'no sink'], [s, P.accent, 'with ' + Math.round(s * 100) + '% to <bos>']].forEach(function (cfg, k) {
+                if (k === 1 && s === 0) return;
+                ctx.strokeStyle = cfg[1]; ctx.lineWidth = 2; ctx.beginPath();
+                for (var q = 0; q <= L; q++) { var px = gx + (q / L) * gw, py = gy + gh - spread(q, cfg[0]) * (gh - 6); if (q) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+                ctx.stroke();
+                ctx.fillStyle = cfg[1]; ctx.fillText(cfg[2], gx + 8, gy + 12 + k * 14);
+            });
+            ctx.strokeStyle = P.ink3; ctx.setLineDash([2, 3]); ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(gx + (l / L) * gw, gy); ctx.lineTo(gx + (l / L) * gw, gy + gh); ctx.stroke(); ctx.setLineDash([]);
+
+            // paint strip
+            var sy = H - 22, sx = 0, sw = (cw - 10) / N;
+            if (narrow) { sy = cy + rad + 22; sw = (W - 10) / N; }
+            toks.forEach(function (tk, k) {
+                var c = [0, 1, 2].map(function (j) { return Math.round(mean.c[j] + f * (tk.c[j] - mean.c[j])); });
+                ctx.fillStyle = 'rgb(' + c.join(',') + ')'; rr(ctx, sx + k * sw, sy, sw - 3, 14, 3); ctx.fill();
+            });
+            ui.readout.innerHTML = stat('distinctness left', Math.round(f * 100) + '%', f < 0.15 ? 'warn' : 'good') +
+                stat('LLaMA 3.1 405B', '~80% of heads sink') + stat('Gemma 7B, no <bos>', 'RULER 82.57 → 0.00', 'warn');
+        }
+        animate(fig, S, draw);
+    };
+
+    // ================================================================
+    // BLOG · LLM-Pruner: discover coupled groups, score them, prune together
+    // ================================================================
+    DEMOS.pruner = function (fig) {
+        var ui = scaffold(fig);
+        var ratio = 0.2, method = 'vector', trigger = null, trigAt = -10, clock = 0, userPicked = false;
+        seg(ui.controls, [['vector', 'Vector-wise'], ['element', 'Element-wise']], method, function (m) { method = m; update(); });
+        range(ui.controls, 'pruning ratio', 0, 0.6, 0.05, ratio, function (v) { return Math.round(v * 100) + '%'; }, function (v) { ratio = v; update(); });
+        var S = Surface(ui.stage, function (w) { return w < 560 ? 372 : 280; });
+
+        var IN = 5, HID = 8, OUT = 5, HEADS = 4, R = rng(9);
+        var groups = [];
+        for (var i = 0; i < HID; i++) groups.push({ type: 'mlp', i: i, params: IN + OUT, v: R(), e: R() });
+        for (var j = 0; j < HEADS; j++) groups.push({ type: 'head', i: j, params: 40, v: R(), e: R() });
+        groups.forEach(function (g) { g.e = 0.6 * g.v + 0.4 * g.e; });   // element-wise refines, mostly agrees
+        var pruned = new Set(), total = groups.reduce(function (a, g) { return a + g.params; }, 0), nodes = [];
+
+        function update() {
+            var key = method === 'vector' ? 'v' : 'e';
+            var order = groups.slice().sort(function (a, b) { return a[key] - b[key]; });
+            var k = Math.round(ratio * groups.length);
+            pruned = new Set(order.slice(0, k));
+            var removed = order.slice(0, k).reduce(function (a, g) { return a + g.params; }, 0);
+            var note = ratio > 0.5 ? stat('paper', 'beyond 50%: notable loss', 'warn') : ratio >= 0.15 && ratio <= 0.25 ? stat('paper', '20% → ~95% zero-shot kept after LoRA', 'good') : stat('recover', 'LoRA, 50K samples, ~3 h');
+            ui.readout.innerHTML = stat('groups pruned', k + ' / ' + groups.length) + stat('params removed', Math.round(100 * removed / total) + '%') + note;
+        }
+        update();
+
+        S.c.addEventListener('pointerdown', function (e) {
+            var r = S.c.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top, best = null, bd = 22;
+            nodes.forEach(function (n) { var d = Math.hypot(n.x - px, n.y - py); if (d < bd) { bd = d; best = n; } });
+            if (best) { trigger = best.g; trigAt = clock; userPicked = true; }
+        });
+
+        function draw(t) {
+            clock = t;
+            if (!userPicked && !reduce && t - trigAt > 2.8) { trigger = groups[Math.floor(R() * groups.length)]; trigAt = t; }
+            if (reduce && !trigger) { trigger = groups[2]; trigAt = t - 2; }
+            var ctx = S.ctx, W = S.w, H = S.h, narrow = W < 560;
+            ctx.clearRect(0, 0, W, H);
+            var p = t - trigAt;   // propagation clock: trigger → incoming → outgoing
+            nodes = [];
+            ctx.textBaseline = 'middle'; ctx.font = font(10); ctx.fillStyle = P.ink3;
+            ctx.fillText((finePointer ? 'CLICK' : 'TAP') + ' A NEURON OR HEAD TO DISCOVER ITS COUPLED GROUP', 0, 10);
+
+            // MLP
+            var mw = narrow ? W : W * 0.55, top = 34, hgt = narrow ? 170 : H - top - 36;
+            var colX = [30, mw / 2, mw - 30];
+            function colY(n, k) { return top + (k + 0.5) * (hgt / n); }
+            ctx.fillStyle = P.ink3; ctx.font = font(9); ctx.textAlign = 'center';
+            ctx.fillText('in', colX[0], top + hgt + 12); ctx.fillText('MLP hidden', colX[1], top + hgt + 12); ctx.fillText('out', colX[2], top + hgt + 12);
+            ctx.textAlign = 'left';
+            for (var hI = 0; hI < HID; hI++) {
+                var g = groups[hI], gone = pruned.has(g), isT = trigger === g;
+                var hy = colY(HID, hI);
+                for (var a = 0; a < IN; a++) {
+                    var inHot = isT && p > 0.3, outHot = isT && p > 0.8;
+                    ctx.strokeStyle = inHot ? P.accent : P.rule; ctx.globalAlpha = gone ? 0.08 : inHot ? 0.9 : 0.5; ctx.lineWidth = inHot ? 1.5 : 1;
+                    ctx.beginPath(); ctx.moveTo(colX[0], colY(IN, a)); ctx.lineTo(colX[1], hy); ctx.stroke();
+                    ctx.strokeStyle = outHot ? P.accent : P.rule; ctx.globalAlpha = gone ? 0.08 : outHot ? 0.9 : 0.5; ctx.lineWidth = outHot ? 1.5 : 1;
+                    ctx.beginPath(); ctx.moveTo(colX[1], hy); ctx.lineTo(colX[2], colY(OUT, a)); ctx.stroke();
+                }
+            }
+            ctx.globalAlpha = 1;
+            [[IN, 0], [OUT, 2]].forEach(function (col) {
+                for (var k = 0; k < col[0]; k++) { ctx.fillStyle = P.ink3; ctx.beginPath(); ctx.arc(colX[col[1]], colY(col[0], k), 5, 0, Math.PI * 2); ctx.fill(); }
+            });
+            for (var h2 = 0; h2 < HID; h2++) {
+                var g2 = groups[h2], gone2 = pruned.has(g2), y2 = colY(HID, h2);
+                ctx.fillStyle = trigger === g2 ? P.accent : gone2 ? P.bg : P.ink2;
+                ctx.strokeStyle = gone2 ? P.warn : 'transparent'; ctx.setLineDash(gone2 ? [2, 2] : []);
+                ctx.beginPath(); ctx.arc(colX[1], y2, 8, 0, Math.PI * 2); ctx.fill(); if (gone2) ctx.stroke();
+                ctx.setLineDash([]);
+                nodes.push({ x: colX[1], y: y2, g: g2 });
+            }
+
+            // attention heads: Q, K, V, O are one coupled group
+            var ax = narrow ? 20 : mw + 40, ay = narrow ? top + hgt + 40 : top + 6, aw = narrow ? W - 40 : W - ax - 10;
+            var hw = aw / HEADS;
+            ctx.fillStyle = P.ink3; ctx.font = font(9);
+            ctx.fillText('attention heads (Q·K·V·O move together)', ax, ay - 12 + (narrow ? 0 : 0));
+            for (var hd = 0; hd < HEADS; hd++) {
+                var g3 = groups[HID + hd], gone3 = pruned.has(g3), isT3 = trigger === g3;
+                var hx = ax + hd * hw + 4, bw = hw - 8, bh = narrow ? 64 : Math.min(120, hgt - 20);
+                ctx.strokeStyle = isT3 ? P.accent : gone3 ? P.warn : P.rulestrong; ctx.lineWidth = isT3 ? 2 : 1;
+                ctx.setLineDash(gone3 ? [3, 3] : []); rr(ctx, hx, ay, bw, bh, 6); ctx.stroke(); ctx.setLineDash([]);
+                ['Q', 'K', 'V', 'O'].forEach(function (m, mi) {
+                    var lit = isT3 && p > 0.25 + mi * 0.2;
+                    ctx.fillStyle = lit ? P.accent : gone3 ? P.rule : P.bg2;
+                    ctx.globalAlpha = gone3 ? 0.4 : 1;
+                    rr(ctx, hx + 6, ay + 6 + mi * ((bh - 12) / 4), bw - 12, (bh - 12) / 4 - 4, 3); ctx.fill();
+                    ctx.fillStyle = lit ? P.bg : P.ink3; ctx.font = font(9); ctx.textAlign = 'center';
+                    ctx.fillText(m, hx + bw / 2, ay + 6 + mi * ((bh - 12) / 4) + ((bh - 12) / 4 - 4) / 2);
+                    ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+                });
+                ctx.fillStyle = P.ink3; ctx.textAlign = 'center';
+                ctx.fillText('head ' + (hd + 1), hx + bw / 2, ay + bh + 12); ctx.textAlign = 'left';
+                nodes.push({ x: hx + bw / 2, y: ay + bh / 2, g: g3 });
+            }
+            // importance of the triggered group
+            if (trigger) {
+                var key = method === 'vector' ? 'v' : 'e';
+                var ty = narrow ? H - 10 : ay + Math.min(120, hgt - 20) + 38;
+                ctx.fillStyle = P.ink2; ctx.font = font(10);
+                var label = (trigger.type === 'mlp' ? 'hidden neuron ' + (trigger.i + 1) : 'head ' + (trigger.i + 1)) +
+                    ' · group importance ' + trigger[key].toFixed(2) + (pruned.has(trigger) ? ' · pruned' : ' · kept');
+                ctx.fillText(p > 1.1 ? label : 'discovering dependencies…', ax, ty);
+            }
+        }
+        animate(fig, S, draw);
+    };
+
+    // ================================================================
+    // BLOG · Recirculation: leak a deep activation into a shallow layer at the next step
+    // ================================================================
+    DEMOS.recirc = function (fig) {
+        var ui = scaffold(fig);
+        var mode = 'recirc', alpha = 0.2, src = 5, dst = 2;
+        seg(ui.controls, [['ff', 'Feedforward'], ['loop', 'Looped'], ['recirc', 'Recirculation']], mode, function (m) { mode = m; });
+        range(ui.controls, 'α', 0, 0.5, 0.05, alpha, function (v) { return v.toFixed(2); }, function (v) { alpha = v; });
+        var rs = range(ui.controls, 'source', 3, 6, 1, src, function (v) { return 'L' + v; }, function (v) { src = v; if (dst >= src) { dst = src - 1; rd.set(dst); } });
+        var rd = range(ui.controls, 'dest', 1, 5, 1, dst, function (v) { return 'L' + v; }, function (v) { dst = Math.min(v, src - 1); rd.set(dst); });
+        var S = Surface(ui.stage, function (w) { return w < 560 ? 340 : 300; });
+        var WORDS = ['I', 'fished', 'near', 'the', 'bank', ';', 'there', 'was'], LAY = 6, BANK = 4;
+
+        function draw(t) {
+            var ctx = S.ctx, W = S.w, H = S.h, narrow = W < 560;
+            ctx.clearRect(0, 0, W, H);
+            var T = WORDS.length, left = 36, right = narrow ? 10 : 190, top = 22, bottom = 44;
+            var dx = (W - left - right) / (T - 0.4), dy = (H - top - bottom) / (LAY - 1);
+            function X(tt) { return left + tt * dx + 10; }
+            function Y(l) { return top + (LAY - l) * dy; }
+            var step = reduce ? T - 1 : Math.floor((t * 1.3) % (T + 2));
+            ctx.textBaseline = 'middle';
+            ctx.font = font(9); ctx.fillStyle = P.ink3;
+            for (var l = 1; l <= LAY; l++) ctx.fillText('L' + l, 4, Y(l));
+            // residual stream (up each column)
+            for (var tt = 0; tt < T; tt++) {
+                var active = tt <= step;
+                ctx.strokeStyle = P.rule; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(X(tt), Y(1)); ctx.lineTo(X(tt), Y(LAY)); ctx.stroke();
+                for (var l2 = 1; l2 <= LAY; l2++) {
+                    ctx.fillStyle = active ? (tt === BANK && l2 >= src ? P.s2 : P.ink2) : P.rulestrong;
+                    ctx.globalAlpha = active ? 1 : 0.6;
+                    ctx.beginPath(); ctx.arc(X(tt), Y(l2), tt === BANK ? 5.5 : 4, 0, Math.PI * 2); ctx.fill();
+                }
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = tt === BANK ? P.s2 : active ? P.ink : P.ink3; ctx.font = font(10, tt === BANK ? 600 : 500); ctx.textAlign = 'center';
+                ctx.fillText(WORDS[tt], X(tt), H - bottom + 18); ctx.textAlign = 'left';
+            }
+            // feedback edges
+            if (mode !== 'ff') {
+                for (var t2 = 0; t2 < T - (mode === 'recirc' ? 1 : 0); t2++) {
+                    if (t2 > step) break;
+                    var x1 = X(t2), y1 = Y(src), x2 = mode === 'recirc' ? X(t2 + 1) : X(t2) + 0.01, y2 = Y(dst);
+                    var cxp = mode === 'recirc' ? (x1 + x2) / 2 + 6 : x1 + 22, cyp = (y1 + y2) / 2;
+                    ctx.strokeStyle = P.accent; ctx.globalAlpha = 0.25 + alpha * 1.4; ctx.lineWidth = 1 + alpha * 5;
+                    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.quadraticCurveTo(cxp, cyp, x2, y2); ctx.stroke();
+                    if (t2 === step && !reduce) {   // pulse along the newest edge
+                        var u = (t * 1.3) % 1, ix = (1 - u) * (1 - u) * x1 + 2 * (1 - u) * u * cxp + u * u * x2, iy = (1 - u) * (1 - u) * y1 + 2 * (1 - u) * u * cyp + u * u * y2;
+                        ctx.globalAlpha = 1; ctx.fillStyle = P.accent; ctx.beginPath(); ctx.arc(ix, iy, 3.5, 0, Math.PI * 2); ctx.fill();
+                    }
+                }
+                ctx.globalAlpha = 1;
+            }
+            // what the shallow layer knows about "bank" at the next word
+            var river = mode === 'recirc' && step > BANK ? 0.5 + 0.4 * Math.min(1, alpha / 0.3) : 0.5;
+            if (!narrow) {
+                var px = W - right + 26, pw = right - 36, py = top + 8;
+                ctx.fillStyle = P.ink3; ctx.font = font(9);
+                ctx.fillText('"bank" as seen by L' + dst + ', next word', px, py);
+                [['river 🌊', river, P.accent], ['money 💰', 1 - river, P.warn]].forEach(function (r, k) {
+                    var yy = py + 22 + k * 30;
+                    ctx.fillStyle = P.ink2; ctx.font = font(10); ctx.fillText(r[0], px, yy);
+                    ctx.fillStyle = P.rule; rr(ctx, px, yy + 9, pw, 8, 4); ctx.fill();
+                    ctx.fillStyle = r[2]; rr(ctx, px, yy + 9, pw * r[1], 8, 4); ctx.fill();
+                });
+                ctx.fillStyle = P.ink3; ctx.font = font(9);
+                var why = mode === 'ff' ? ['deep layers resolve "bank",', 'but can\'t reach back down'] : mode === 'loop' ? ['loops repeat layers within', 'a step: depth-only recurrence'] : ['deep state leaks into the', 'next step\'s shallow layer'];
+                ctx.fillText(why[0], px, py + 96); ctx.fillText(why[1], px, py + 110);
+            }
+            ui.readout.innerHTML = stat('update', 'z(t+1, L' + dst + ') = ' + alpha.toFixed(2) + '·f(z(t, L' + src + ')) + ' + (1 - alpha).toFixed(2) + '·z(t, L' + dst + ')') +
+                (mode === 'recirc' ? stat('prefill', 'sequential (no parallel prompt reading)', 'warn') : '') +
+                stat('Gemma3 perplexity', '↓ up to ~16% (1B/4B), ~35% (12B)', 'good');
+        }
+        animate(fig, S, draw);
+    };
+
+    // ================================================================
+    // BLOG · Keyless attention: score against values, cache values only
+    // ================================================================
+    DEMOS.keyless = function (fig) {
+        var ui = scaffold(fig);
+        var ctxLen = 8192, depth = 'qvv3';
+        seg(ui.controls, [['std', 'Standard QKV'], ['qvv2', 'QVV(2)'], ['qvv3', 'QVV(3)']], depth, function (d) { depth = d; });
+        range(ui.controls, 'context', 1024, 32768, 1024, ctxLen, function (v) { return (v / 1024) + 'K'; }, function (v) { ctxLen = v; memo(); });
+        var S = Surface(ui.stage, function (w) { return w < 560 ? 330 : 280; });
+        function memo() {
+            var std = 0.236 * ctxLen / 8192;
+            ui.readout.innerHTML = stat('standard KV cache', std.toFixed(3) + ' GB', 'warn') + stat('value-only cache', (std / 2).toFixed(3) + ' GB', 'good') +
+                stat('saving', 'exactly 50%') + stat('perplexity', 'matches/beats standard on 4 of 5 models');
+        }
+        memo();
+
+        function draw(t) {
+            var ctx = S.ctx, W = S.w, H = S.h, narrow = W < 560;
+            ctx.clearRect(0, 0, W, H);
+            var MAX = narrow ? 12 : 20, n = reduce ? MAX : 1 + Math.floor((t * 2.2) % (MAX + 4));
+            n = Math.min(n, MAX);
+            var left = 96, cw = (W - left - 60) / MAX, ch = 18;
+            ctx.textBaseline = 'middle';
+            function panel(y, title, rows) {
+                ctx.fillStyle = P.ink3; ctx.font = font(9); ctx.fillText(title, 0, y - 16);
+                rows.forEach(function (r, ri) {
+                    var yy = y + ri * (ch + 6);
+                    ctx.fillStyle = P.ink2; ctx.font = font(10); ctx.fillText(r[0], 0, yy + ch / 2);
+                    for (var k = 0; k < MAX; k++) {
+                        ctx.fillStyle = k < n ? P[r[1]] : P.rule; ctx.globalAlpha = k < n ? 0.85 : 0.5;
+                        rr(ctx, left + k * cw + 1, yy, cw - 2, ch, 3); ctx.fill();
+                    }
+                    ctx.globalAlpha = 1;
+                });
+            }
+            var y1 = 34, y2 = y1 + 2 * (ch + 6) + 44;
+            panel(y1, 'STANDARD ATTENTION · KV CACHE', [['keys K', 's3'], ['values V', 's1']]);
+            panel(y2, 'KEYLESS · VALUE-ONLY CACHE', [['values V', 's1']]);
+            // the new query scores against keys (standard) vs values (keyless)
+            var qx = left + Math.min(n, MAX) * cw + 18;
+            [[y1, y1 + ch / 2], [y2, y2 + ch / 2]].forEach(function (pair, i) {
+                ctx.fillStyle = P.accent; ctx.beginPath(); ctx.arc(qx, pair[1], 8, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = P.bg; ctx.font = font(10, 600); ctx.textAlign = 'center'; ctx.fillText('q', qx, pair[1] + 1); ctx.textAlign = 'left';
+                ctx.strokeStyle = P.accent; ctx.lineWidth = 1;
+                for (var k = 0; k < n; k++) {
+                    var w = 0.15 + 0.85 * Math.pow(Math.max(0, Math.sin(k * 1.7 + t * 0.9 + i)), 4);
+                    ctx.globalAlpha = w * 0.8;
+                    ctx.beginPath(); ctx.moveTo(qx - 8, pair[1]); ctx.lineTo(left + k * cw + cw / 2, pair[1]); ctx.stroke();
+                }
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = P.ink3; ctx.font = font(9);
+                ctx.fillText(i === 0 ? 'scores = q·K, output = Σ a·V' : 'scores = q·V, output = Σ a·V (same vectors)', left, pair[0] + (i === 0 ? 2 * (ch + 6) : ch + 6) + 6);
+            });
+            // weight chain
+            var wy = H - 40, chains = {
+                std: [['W_Q', 's2'], ['W_K', 's3'], ['W_V', 's1']],
+                qvv2: [['W_Q', 's2'], ['W_V', 's1']],
+                qvv3: [['W_Q1', 's2'], ['W_Q2', 's2'], ['W_V', 's1']]
+            }[depth];
+            ctx.fillStyle = P.ink3; ctx.font = font(9); ctx.fillText('PROJECTIONS', 0, wy);
+            var bxw = narrow ? 52 : 64;
+            chains.forEach(function (c, k) {
+                var bx = left + k * (bxw + 12);
+                ctx.fillStyle = P[c[1]]; ctx.globalAlpha = 0.9; rr(ctx, bx, wy - 13, bxw, 26, 5); ctx.fill(); ctx.globalAlpha = 1;
+                ctx.fillStyle = P.bg; ctx.font = font(10, 600); ctx.textAlign = 'center'; ctx.fillText(c[0], bx + bxw / 2, wy); ctx.textAlign = 'left';
+            });
+            ctx.fillStyle = P.ink3; ctx.font = font(9);
+            var note = depth === 'qvv3' ? 'same #matrices as QKV · W_Q1·W_Q2 fused into one at inference' : depth === 'qvv2' ? 'one matrix fewer than QKV' : 'keys need their own projection and cache';
+            if (!narrow) ctx.fillText(note, left + chains.length * (bxw + 12) + 8, wy);
+            else ctx.fillText(note, 0, wy + 26);
+        }
+        animate(fig, S, draw);
+    };
+
     // ------------------------------------------------------------ boot
     function boot() {
         document.querySelectorAll('figure.demo[data-demo]').forEach(function (fig) {

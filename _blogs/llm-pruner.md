@@ -26,6 +26,11 @@ This paper introduces a method named **LLM-Pruner**, which aims to ensure LLMs r
 
 ## Method
 
+<figure class="demo" data-demo="pruner">
+  <p class="demo-label mono"><span class="live-dot" aria-hidden="true"></span>Interactive explainer</p>
+  <figcaption>Pruning one neuron means pruning everything wired to it. Click a hidden neuron or an attention head to trace its coupled group, then raise the pruning ratio to remove the lowest-importance groups whole. Importance scores here are illustrative.</figcaption>
+</figure>
+
 ### 1. Discovery stage
 
 This step identifies groups of interdependent structures within the LLM. It ensures coupled structures are pruned in unison, as partial pruning leads to an increase in parameter size and misaligned representations.
