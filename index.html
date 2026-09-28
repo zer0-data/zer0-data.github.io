@@ -128,6 +128,25 @@ slug: home
         </a>
         {%- endif %}
     </div>
+    {%- assign highlight = real_pubs | where: "highlight", true | first %}
+    {%- if highlight and highlight.demo %}
+    <div class="home-demo" data-reveal>
+        <div class="home-demo-copy">
+            <p class="kicker">★ Highlight · {{ highlight.venue }}</p>
+            <h3>{{ highlight.title }}</h3>
+            <p>{{ highlight.demo_caption }}</p>
+            <div class="home-demo-links">
+                {%- assign hl_link = highlight.links | first %}
+                <a class="text-link" href="{{ hl_link.url }}" target="_blank" rel="noopener noreferrer">Read on {{ hl_link.label }} <span class="arr" aria-hidden="true">↗</span></a>
+                <a class="text-link" href="{{ '/publications.html' | relative_url }}">Explainers for every paper <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+        </div>
+        <figure class="demo" data-demo="{{ highlight.demo }}">
+            <p class="demo-label mono"><span class="live-dot" aria-hidden="true"></span>Interactive explainer</p>
+            <figcaption></figcaption>
+        </figure>
+    </div>
+    {%- endif %}
     <div class="preview" aria-hidden="true">
         <img class="preview-img" alt="">
         <span class="preview-venue mono"></span>

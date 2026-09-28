@@ -85,6 +85,13 @@
         document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
         var api = { redraw: function () { draw(t, 0); } };
         redrawAll.push(function () { surface.fit(); draw(t, 0); });
+        if ('ResizeObserver' in window) {
+            var lastW = surface.w;
+            new ResizeObserver(function () {
+                if (Math.abs(surface.c.clientWidth - lastW) < 1) return;
+                surface.fit(); lastW = surface.w; draw(t, 0);
+            }).observe(surface.c);
+        }
         draw(t, 0);
         return api;
     }
@@ -854,7 +861,8 @@
         document.querySelectorAll('figure.demo[data-demo]').forEach(function (fig) {
             var fn = DEMOS[fig.getAttribute('data-demo')];
             if (!fn) return;
-            try { fn(fig); fig.classList.add('ready'); } catch (e) { fig.style.display = 'none'; if (window.console) console.error(e); }
+            fig.classList.add('ready');   // visible before building, so canvases measure their real width
+            try { fn(fig); } catch (e) { fig.classList.remove('ready'); fig.style.display = 'none'; if (window.console) console.error(e); }
         });
     }
     var rt;
