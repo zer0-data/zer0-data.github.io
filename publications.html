@@ -37,7 +37,7 @@ description: Publications by Aryan Sood on efficient attention, KV-cache compres
     <div class="pub-list" data-filter-target="pubs">
         {%- for pub in real_pubs %}
         {%- capture n %}{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}{% endcapture %}
-        {% include pub-card.html pub=pub n=n %}
+        {% include pub-card.html pub=pub n=n demos=true %}
         {%- endfor %}
     </div>
 </section>

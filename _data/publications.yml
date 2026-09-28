@@ -14,6 +14,8 @@
 #   links        List of { label, url }
 #   bibtex       Optional BibTeX block (use the | literal style). Use the official
 #                arXiv export (arxiv.org/bibtex/<id>) where one exists.
+#   demo         Name of an interactive explainer in assets/js/demos.js (optional)
+#   demo_caption Caption shown under the explainer
 #   placeholder  true renders a "forthcoming" card. To publish a placeholder,
 #                fill in the fields and delete the placeholder line.
 
@@ -27,6 +29,8 @@
   year: 2026
   highlight: true
   summary: "Developed Pulsar Attention for distributed long-context inference, replacing static anchor duplication with content-aware statistical summaries and reporting up to <strong>4.7%</strong> accuracy gain over dense attention, <strong>6.1%</strong> over Star Attention, and <strong>3.3x</strong> lower Phase-1 FLOPs. Also accepted at the <strong>AdaptFM Workshop</strong> on Resource-Adaptive Foundation Model Inference, ICML 2026."
+  demo: pulsar
+  demo_caption: "Star Attention prepends a full copy of block 1 to every GPU; Pulsar sends a 64-token sink plus Max-IDF chunks (rare tokens) from earlier blocks, then discards that prefix and merges the query globally."
   links:
     - label: arXiv
       url: "https://arxiv.org/abs/2607.20457"
@@ -51,6 +55,8 @@
   type: workshop
   year: 2026
   summary: "Introduced LASER-KV, a KV-cache compression method achieving up to <strong>10% higher accuracy at 128k context</strong> over greedy pruning baselines via block-wise accumulation and <strong>Exact-LSH sampling</strong>."
+  demo: laser
+  demo_caption: "Bars show attention scores. Greedy top-k keeps the spikes and drops low-attention supporting facts; LASER-KV protects sink and local tokens (divisor n) and splits the recall budget between exact attention and LSH."
   links:
     - label: arXiv
       url: "https://arxiv.org/abs/2602.02199"
@@ -75,6 +81,8 @@
   type: workshop
   year: 2026
   summary: "Introduced spherical soft-masking for diffusion LLMs, replacing Euclidean LERP feedback with <strong>SLERP over Fréchet means</strong> to mitigate embedding norm collapse during MDLM fine-tuning."
+  demo: lostinterp
+  demo_caption: "The mask and predicted-token embeddings sit ~73° apart on a hypersphere. LERP feedback cuts through the sphere and shrinks the norm; Spherical Soft-Masking takes a Fréchet mean and SLERPs along the surface."
   links:
     - label: arXiv
       url: "https://arxiv.org/abs/2608.06529"
@@ -99,6 +107,8 @@
   type: blog
   year: 2026
   summary: "Surveyed sparsity-based efficiency methods for transformers, organizing them into a unified taxonomy distinguishing <strong>static structural patterns</strong> from <strong>dynamic, attention-driven</strong> approaches."
+  demo: sparsity
+  demo_caption: "Causal attention masks for a 20-token sequence. Static patterns fix the mask in advance; dynamic ones pick keys from the content, so the mask changes with the input."
   links:
     - label: Blog
       url: "https://iclr-blogposts.github.io/2026/blog/2026/sparsity/"
@@ -120,6 +130,8 @@
   type: preprint
   year: 2026
   summary: "Regenerates long legal and financial documents one clause at a time from short structural briefs (number path, required terms, cross-references), never showing the generator source prose. Keeps cross-reference fidelity near <strong>0.98</strong> with a near-constant <strong>~86-token</strong> maximum prompt, and improves verifiable section and cross-reference topology over one-pass generation on CUAD and EDGAR EX-10."
+  demo: brief
+  demo_caption: "BRIEF writes each clause from a short brief (number path, terms, cross-references), so every call stays around 86 tokens while one-pass context grows with the document. Numbers from the paper's synthetic length sweep."
   links:
     - label: Preprint
       url: "https://drive.google.com/file/d/1eSaDHXbvRkJ3DKn1NDAqOoqPP1zRja8h/view?usp=sharing"
@@ -132,6 +144,8 @@
   type: preprint
   year: 2026
   summary: "Audits SycEval and shows two template confounds: naming a target answer raises the follow rate by <strong>14.1–49.5 pp</strong> and, once controlled, reverses the reported timing effect on three of five model conditions; relocating the output-format instruction flips its effect across models. Closes with three checks benchmark authors can run on their own templates."
+  demo: sycophancy
+  demo_caption: "SycEval's preemptive template names an answer and its in-context one doesn't, so timing and naming move together. Adding the missing named in-context arm separates them. Effects in percentage points, from the paper."
   links:
     - label: Preprint
       url: "https://drive.google.com/file/d/1gmTjrKBd72GV1PG08rQasb4ow1GRqPfX/view?usp=sharing"
@@ -143,6 +157,8 @@
   type: preprint
   year: 2026
   summary: "Reframes softpick's failure at scale as a normalization problem by splitting its denominator into forward and backward roles. Traces the failure to initialization (rows with zero positive mass and gradient norms above 10<sup>12</sup>) and identifies a <strong>stop-gradient operator</strong> that trains from scratch and, at 230M parameters, matches softpick on quantization with fewer dead heads and better passkey retrieval."
+  demo: softpick
+  demo_caption: "Softpick rectifies scores so irrelevant keys get exactly 0. When every score in a row is ≤ 0, D+ = 0 and the whole row is dead; early causal rows see few keys, so this happens at initialisation."
   links:
     - label: Preprint
       url: "https://drive.google.com/file/d/1HYkrKPrnTUWpVX5pKjENDGaaWYxE4C61/view?usp=sharing"

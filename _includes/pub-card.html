@@ -15,6 +15,12 @@
         <p class="pub-summary">{{ pub.summary }}</p>
         {%- else %}
         <p class="pub-summary">{{ pub.summary }}</p>
+        {%- if pub.demo and include.demos %}
+        <figure class="demo" data-demo="{{ pub.demo }}">
+            <p class="demo-label mono"><span class="live-dot" aria-hidden="true"></span>Interactive explainer</p>
+            <figcaption>{{ pub.demo_caption }}</figcaption>
+        </figure>
+        {%- endif %}
         <div class="pub-actions">
             {%- for link in pub.links %}
             <a class="text-link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.label }} <span class="arr" aria-hidden="true">↗</span></a>
