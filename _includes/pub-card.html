@@ -38,7 +38,7 @@
         {%- endif %}
     </div>
     <div class="pub-meta">
-        {%- if pub.highlight %}<span class="tag tag-solid">★ Highlight</span>{% endif %}
+        {%- if pub.highlight %}<span class="tag tag-solid">★ {{ pub.badge | default: "Highlight" }}</span>{% endif %}
         <span class="tag{% if pub.status == 'accepted' %} tag-accent{% endif %}">{{ pub.venue }}</span>
         <span class="mono muted">{{ pub.year }}{% unless pub.placeholder %} · {{ pub.type }}{% endunless %}</span>
     </div>

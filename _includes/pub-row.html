@@ -9,7 +9,7 @@
    data-preview-text="{{ pub.summary | strip_html | escape }}" data-reveal>
     <span class="row-n mono">{{ include.n }}</span>
     <span class="row-title">{{ pub.title }}</span>
-    <span class="row-venue mono">{% if pub.highlight %}<b class="row-star">★</b> {% endif %}{{ pub.venue }}</span>
+    <span class="row-venue mono">{% if pub.highlight %}<b class="row-star">★</b> {% endif %}{{ pub.venue }}{% if pub.badge %} · {{ pub.badge }}{% endif %}</span>
     <span class="row-arrow" aria-hidden="true">↗</span>
     <span class="row-summary">{{ pub.summary | strip_html }}</span>
 </a>

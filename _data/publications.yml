@@ -9,7 +9,9 @@
 #   status       accepted | review | preprint | upcoming
 #   type         conference | workshop | blog | preprint   (drives the filter chips)
 #   year         Year shown on the card
-#   highlight    true marks a headline paper (accent badge, listed first)
+#   highlight    true marks a headline paper (accent badge). The first highlighted
+#                entry is also featured on the home page with its explainer.
+#   badge        Optional badge text for a highlighted paper (default "★ Highlight"), e.g. "Oral"
 #   summary      One or two sentences (HTML allowed)
 #   links        List of { label, url }
 #   bibtex       Optional BibTeX block (use the | literal style). Use the official
@@ -20,6 +22,7 @@
 #                fill in the fields and delete the placeholder line.
 
 # ---------------------------------------------------------------- accepted
+# Preprints hosted on Drive have no official BibTeX yet; add one once they are on arXiv.
 - title: "Dropping the Anchor: Statistical Context Summarization for Distributed Systems via Pulsar Attention"
   authors: "Aryan Sood, Shantanu Acharya, Gaurav Kumar Nayak"
   venue: "EMNLP 2026 Findings"
@@ -47,6 +50,34 @@
           archivePrefix={arXiv},
           primaryClass={cs.CL},
           url={https://arxiv.org/abs/2607.20457},
+    }
+
+- title: "Are You Sure You're Sure? Two Confounds in a Sycophancy Benchmark"
+  authors: "Atharv Gupta*, Akshat Jindal*, Lavanya Nigam†, Aryan Sood†"
+  note: "* equal contribution (first authors) · † equal contribution (second authors)"
+  venue: "NeurIPS 2026"
+  venue_detail: "First Workshop on Reliable Evaluation for Language Models (JUDGe), NeurIPS 2026 · Oral"
+  status: accepted
+  type: workshop
+  highlight: true
+  badge: "Oral"
+  year: 2026
+  summary: "Audits SycEval and shows two template confounds: naming a target answer raises the follow rate by <strong>14.1–49.5 pp</strong> and, once controlled, reverses the reported timing effect on three of five model conditions; relocating the output-format instruction flips its effect across models. Closes with three checks benchmark authors can run on their own templates."
+  demo: sycophancy
+  demo_caption: "SycEval's preemptive template names an answer and its in-context one doesn't, so timing and naming move together. Adding the missing named in-context arm separates them. Effects in percentage points, from the paper."
+  links:
+    - label: arXiv
+      url: "https://arxiv.org/abs/2609.32867"
+    - label: OpenReview
+      url: "https://openreview.net/forum?id=tySSyo3JbS"
+  bibtex: |-
+    @inproceedings{
+    gupta2026are,
+    title={Are You Sure You{\textquoteright}re Sure? Two Confounds in a Sycophancy Benchmark},
+    author={Atharv Gupta and Akshat Jindal and Lavanya Nigam and Aryan Sood},
+    booktitle={First Workshop on Reliable Evaluation for Language Models (JUDGe)},
+    year={2026},
+    url={https://openreview.net/forum?id=tySSyo3JbS}
     }
 
 - title: "More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression"
@@ -101,6 +132,34 @@
           url={https://arxiv.org/abs/2608.06529},
     }
 
+- title: "BRIEF: Bounded-Context Regeneration of Long Documents with Verifiable Structural Topology"
+  authors: "Aryan Sood, Soham Bhattacharjee, Pratinav Seth"
+  venue: "NeurIPS 2026"
+  venue_detail: "Third Workshop on Long-Context Foundation Models (LCFM), NeurIPS 2026"
+  status: accepted
+  type: workshop
+  year: 2026
+  summary: "Regenerates long legal and financial documents one clause at a time from short structural briefs (number path, required terms, cross-references), never showing the generator source prose. Keeps cross-reference fidelity near <strong>0.98</strong> with a near-constant <strong>~86-token</strong> maximum prompt, and improves verifiable section and cross-reference topology over one-pass generation on CUAD and EDGAR EX-10."
+  demo: brief
+  demo_caption: "BRIEF writes each clause from a short brief (number path, terms, cross-references), so every call stays around 86 tokens while one-pass context grows with the document. Numbers from the paper's synthetic length sweep."
+  links:
+    - label: Preprint
+      url: "https://drive.google.com/file/d/1eSaDHXbvRkJ3DKn1NDAqOoqPP1zRja8h/view?usp=sharing"
+
+- title: "Underscoring the Problem: Why Softpick Fails at Initialization"
+  authors: "Aryan Sood, Jaikaran Singh, Ishaan Bansal"
+  venue: "NeurIPS 2026"
+  venue_detail: "Third Workshop on Long-Context Foundation Models (LCFM), NeurIPS 2026"
+  status: accepted
+  type: workshop
+  year: 2026
+  summary: "Reframes softpick's failure at scale as a normalization problem by splitting its denominator into forward and backward roles. Traces the failure to initialization (rows with zero positive mass and gradient norms above 10<sup>12</sup>) and identifies a <strong>stop-gradient operator</strong> that trains from scratch and, at 230M parameters, matches softpick on quantization with fewer dead heads and better passkey retrieval."
+  demo: softpick
+  demo_caption: "Softpick rectifies scores so irrelevant keys get exactly 0. When every score in a row is ≤ 0, D+ = 0 and the whole row is dead; early causal rows see few keys, so this happens at initialisation."
+  links:
+    - label: Preprint
+      url: "https://drive.google.com/file/d/1HYkrKPrnTUWpVX5pKjENDGaaWYxE4C61/view?usp=sharing"
+
 - title: "Don't Look Up (Every Token): Escaping Quadratic Complexity via Patterns and Algorithms"
   authors: "Aryan Sood, Tanvi Sharma, Vansh Agrawal"
   venue: "ICLR 2026"
@@ -122,45 +181,3 @@
       year={2026},
       url={https://iclr-blogposts.github.io/2026/blog/2026/sparsity/}
     }
-
-# ---------------------------------------------------------------- under review
-# Preprints hosted on Drive have no official BibTeX yet; add one once they are on arXiv.
-- title: "BRIEF: Bounded-Context Regeneration of Long Documents with Verifiable Structural Topology"
-  authors: "Aryan Sood, Soham Bhattacharjee, Pratinav Seth"
-  venue: "Under review"
-  status: review
-  type: preprint
-  year: 2026
-  summary: "Regenerates long legal and financial documents one clause at a time from short structural briefs (number path, required terms, cross-references), never showing the generator source prose. Keeps cross-reference fidelity near <strong>0.98</strong> with a near-constant <strong>~86-token</strong> maximum prompt, and improves verifiable section and cross-reference topology over one-pass generation on CUAD and EDGAR EX-10."
-  demo: brief
-  demo_caption: "BRIEF writes each clause from a short brief (number path, terms, cross-references), so every call stays around 86 tokens while one-pass context grows with the document. Numbers from the paper's synthetic length sweep."
-  links:
-    - label: Preprint
-      url: "https://drive.google.com/file/d/1eSaDHXbvRkJ3DKn1NDAqOoqPP1zRja8h/view?usp=sharing"
-
-- title: "Are You Sure You're Sure? Two Confounds in a Sycophancy Benchmark"
-  authors: "Atharv Gupta*, Akshat Jindal*, Lavanya Nigam†, Aryan Sood†"
-  note: "* equal contribution (first authors) · † equal contribution (second authors)"
-  venue: "Under review"
-  status: review
-  type: preprint
-  year: 2026
-  summary: "Audits SycEval and shows two template confounds: naming a target answer raises the follow rate by <strong>14.1–49.5 pp</strong> and, once controlled, reverses the reported timing effect on three of five model conditions; relocating the output-format instruction flips its effect across models. Closes with three checks benchmark authors can run on their own templates."
-  demo: sycophancy
-  demo_caption: "SycEval's preemptive template names an answer and its in-context one doesn't, so timing and naming move together. Adding the missing named in-context arm separates them. Effects in percentage points, from the paper."
-  links:
-    - label: Preprint
-      url: "https://drive.google.com/file/d/1gmTjrKBd72GV1PG08rQasb4ow1GRqPfX/view?usp=sharing"
-
-- title: "Underscoring the Problem: Why Softpick Fails at Initialization"
-  authors: "Aryan Sood, Jaikaran Singh, Ishaan Bansal"
-  venue: "Under review"
-  status: review
-  type: preprint
-  year: 2026
-  summary: "Reframes softpick's failure at scale as a normalization problem by splitting its denominator into forward and backward roles. Traces the failure to initialization (rows with zero positive mass and gradient norms above 10<sup>12</sup>) and identifies a <strong>stop-gradient operator</strong> that trains from scratch and, at 230M parameters, matches softpick on quantization with fewer dead heads and better passkey retrieval."
-  demo: softpick
-  demo_caption: "Softpick rectifies scores so irrelevant keys get exactly 0. When every score in a row is ≤ 0, D+ = 0 and the whole row is dead; early causal rows see few keys, so this happens at initialisation."
-  links:
-    - label: Preprint
-      url: "https://drive.google.com/file/d/1HYkrKPrnTUWpVX5pKjENDGaaWYxE4C61/view?usp=sharing"

@@ -2,6 +2,10 @@
 #   date   Free text, e.g. "Mar 2026"
 #   text   One line (HTML allowed)
 
+- date: "Oct 2026"
+  text: "<a href=\"https://arxiv.org/abs/2609.32867\"><em>Are You Sure You're Sure?</em></a> accepted as an <strong>oral</strong> at the JUDGe Workshop, <strong>NeurIPS 2026</strong>."
+- date: "Oct 2026"
+  text: "<em>BRIEF</em> and <em>Underscoring the Problem</em> accepted at the Long-Context Foundation Models (LCFM) Workshop, <strong>NeurIPS 2026</strong>."
 - date: "Sep 2026"
   text: "Joined <strong>Simplismart</strong> as an ML Engineer Intern, working on pipeline- and kernel-level inference optimisation."
 - date: "2026"

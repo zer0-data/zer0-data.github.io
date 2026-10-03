@@ -29,7 +29,7 @@
     - "Worked on long-document generation and led the research project <strong>BRIEF</strong> (Bounded Regeneration In Exact Form), which regenerates long legal and financial documents clause by clause from short structural briefs derived from a reference graph."
     - "Kept cross-reference fidelity near <strong>0.98</strong> across a controlled length sweep with a near-constant <strong>~86-token</strong> maximum prompt, where one-pass generation exceeds <strong>20K tokens</strong> per call at 1,200 clauses."
     - "Improved extractor-verifiable section and cross-reference topology over one-pass generation on <strong>CUAD</strong> contracts and <strong>EDGAR EX-10</strong> exhibits, and designed <strong>BRIEF-L</strong>, a dependency-ordered plug-in that lifts within-release coherence from near zero to <strong>0.44–0.70</strong> of cited clauses."
-    - "Ran retrieval-based source-linkage audits and a cross-generator replication on <strong>Llama-3.1-8B</strong>; first author of the resulting paper (under review)."
+    - "Ran retrieval-based source-linkage audits and a cross-generator replication on <strong>Llama-3.1-8B</strong>; first author of the resulting paper, accepted at the <strong>LCFM Workshop, NeurIPS 2026</strong>."
   tags: [Long-document generation, Graph-conditioned generation, CUAD, EDGAR]
 
 - org: "Shantanu Acharya, Research Scientist at NVIDIA"
